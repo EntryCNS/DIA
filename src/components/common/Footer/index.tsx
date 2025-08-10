@@ -1,8 +1,5 @@
 import styled from "styled-components";
-
-interface FooterProps {
-  logoSrc?: string;
-}
+import defaultLogo from "../../../assets/DGSWLogo.svg";
 
 const FooterContainer = styled.footer`
   width: 100%;
@@ -57,12 +54,10 @@ const FooterText = styled.div`
   }
 `;
 
-export function Footer({ logoSrc }: FooterProps) {
-  const defaultLogo = "/src/assets/DGSWLogo.svg";
-  
+export function Footer() {
   return (
     <FooterContainer>
-      <LogoImage src={logoSrc || defaultLogo} alt="OGSW Logo" />
+      <LogoImage src={defaultLogo}/>
       
       <FooterText>
         원서접수처 주소 : 대구광역시 달성군 구지면 창리로 11길 93 대구소프트웨어마이스터고등학교 ( 43010 )
