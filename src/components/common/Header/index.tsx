@@ -1,10 +1,6 @@
 import styled from "styled-components";
 import defaultLogo from "../../../assets/DGSW.svg";
 
-interface HeaderProps {
-  logoSrc?: string;
-}
-
 const HeaderContainer = styled.header`
   width: 100%;
   background-color: white;
@@ -21,7 +17,7 @@ const HeaderContainer = styled.header`
     left: 0;
     right: 0;
     height: 1px;
-    background-color: #E7E9ED; 
+    background-color: #E7E9ED;
   }
 `;
 
@@ -30,10 +26,10 @@ const LogoImage = styled.img`
   object-fit: contain;
 `;
 
-export function Header({ logoSrc }: HeaderProps) {
+export function Header() {
   return (
     <HeaderContainer>
-      <LogoImage src={logoSrc || defaultLogo} alt="DGSW Logo" />
+      <LogoImage src={defaultLogo}/>
     </HeaderContainer>
   );
 }
