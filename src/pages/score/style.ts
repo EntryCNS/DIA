@@ -8,7 +8,7 @@ export const Body = styled.div`
   min-height: 100vh;
   background-color: #ffffff;
   padding: 20px;
-  
+
   @media (max-width: 768px) {
     padding: 16px;
   }
@@ -20,7 +20,7 @@ export const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 36px;
-  
+
   @media (max-width: 768px) {
     gap: 24px;
   }
@@ -32,7 +32,7 @@ export const Title = styled.h1`
   font-size: 28px;
   color: #333;
   text-align: left;
-  
+
   @media (max-width: 768px) {
     font-size: 24px;
     text-align: center;
@@ -42,7 +42,7 @@ export const Title = styled.h1`
 export const Contents = styled.div`
   display: flex;
   gap: 20px;
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 16px;
@@ -60,7 +60,7 @@ export const TableWrapper = styled.div`
   border-radius: 8px;
   padding: 40px 35px;
   width: 100%;
-  
+
   @media (max-width: 768px) {
     padding: 20px 16px;
     overflow-x: auto;
@@ -93,7 +93,7 @@ export const Table = styled.table`
       &:last-child {
         border-right: none;
       }
-      
+
       @media (max-width: 768px) {
         font-size: 14px;
         height: 48px;
@@ -123,7 +123,7 @@ export const Table = styled.table`
       &.check-title {
         background-color: #f9f9f9;
       }
-      
+
       @media (max-width: 768px) {
         font-size: 14px;
         height: 48px;
@@ -141,7 +141,7 @@ export const ButtonsWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 14px;
-  
+
   @media (max-width: 768px) {
     width: 100%;
     gap: 12px;
