@@ -1,7 +1,7 @@
 import * as S from "./style";
 import { Button } from "../../components/common/Button";
-// import Header from "../../components/common/Header";
-// import Footer from "../../components/common/Footer";
+import { Header } from "../../components/common/Header";
+import { Footer } from "../../components/common/Footer";
 // import NavigateBar from "../../components/common/NavigateBar";
 
 const ScorePage = () => {
@@ -11,7 +11,7 @@ const ScorePage = () => {
 
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       {/* <NavigateBar /> */}
       <S.Body>
         <S.Wrap>
@@ -51,7 +51,7 @@ const ScorePage = () => {
           </S.Contents>
         </S.Wrap>
       </S.Body>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };
