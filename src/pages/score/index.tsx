@@ -41,7 +41,7 @@ const ScorePage = () => {
             </S.ScoreContainer>
 
             <S.ButtonsWrap>
-              <Button text="홈페이지로 이동하기" href="" variant="primary" />
+              <Button text="홈페이지로 이동하기" href="https://dgsw.dge.hs.kr/dgswh/main.do" variant="primary" />
               <Button text="이전" variant="gray" />
             </S.ButtonsWrap>
           </S.Contents>
