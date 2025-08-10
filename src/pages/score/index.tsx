@@ -5,6 +5,10 @@ import { Button } from "../../components/common/Button";
 // import NavigateBar from "../../components/common/NavigateBar";
 
 const ScorePage = () => {
+  const handlePrev = () => {
+    window.history.back();
+  };
+
   return (
     <>
       {/* <Header /> */}
@@ -42,7 +46,7 @@ const ScorePage = () => {
 
             <S.ButtonsWrap>
               <Button text="홈페이지로 이동하기" href="https://dgsw.dge.hs.kr/dgswh/main.do" variant="primary" />
-              <Button text="이전" variant="gray" />
+              <Button text="이전" variant="gray" onClick={handlePrev}/>
             </S.ButtonsWrap>
           </S.Contents>
         </S.Wrap>
