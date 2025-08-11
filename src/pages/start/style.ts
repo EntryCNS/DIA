@@ -1,5 +1,20 @@
 import styled from "styled-components";
 
+export const PageContainer = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const MainContent = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: calc((100vw - 802px) / 2);
+`;
+
 export const Title = styled.p`
   font-size: 32px;
   font-weight: 600;
