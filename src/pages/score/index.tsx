@@ -1,10 +1,14 @@
 import * as S from "./style";
 import { Button } from "../../components/common/Button";
+import { useLocation } from "react-router-dom";
 // import Header from "../../components/common/Header";
 // import Footer from "../../components/common/Footer";
 // import NavigateBar from "../../components/common/NavigateBar";
 
 const ScorePage = () => {
+  const {state} = useLocation();
+  const { scores, studentType } = state || { scores: {}, studentType: "" };
+
   return (
     <>
       {/* <Header /> */}
