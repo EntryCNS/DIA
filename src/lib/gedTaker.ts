@@ -4,6 +4,7 @@ type ScoreProps = {
   korean: string;
   english: string;
   math: string;
+  society: string;
   science: string;
   elective: string;
   [key: string]: string;

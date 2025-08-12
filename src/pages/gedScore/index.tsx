@@ -28,6 +28,10 @@ const ScorePage = () => {
    });
  };
 
+ const handlePrev = () => {
+   window.history.back();
+ };
+
  return (
    <>
      <Header />
@@ -77,7 +81,7 @@ const ScorePage = () => {
                        <S.ScoreInput
                          type="number"
                          value={scores.society}
-                         onChange={(e) => handleChange("math", e.target.value)}
+                         onChange={(e) => handleChange("society", e.target.value)}
                        />
                      </td>
                      <td>

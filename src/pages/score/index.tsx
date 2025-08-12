@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { Header } from "../../components/common/Header";
 import { Footer } from "../../components/common/Footer";
 // import NavigateBar from "../../components/common/NavigateBar";
-import { GedTaker } from "../../lib/GedTaker";
+import { GedTaker } from "../../lib/gedTaker";
 import { useState, useEffect } from "react";
 
 const ScorePage = () => {
@@ -64,11 +64,11 @@ const ScorePage = () => {
                   <tbody>
                     <tr>
                       <td className="check-title">점수확인</td>
-                      <td>{sujbjectScore}</td>
-                      <td>{attendanceScore}</td>
-                      <td>{volunteerScore}</td>
-                      <td>{bonusScore}</td>
-                      <td>{totalScore}</td>
+                      <td>{sujbjectScore.toFixed(1)}</td>
+                      <td>{attendanceScore.toFixed(1)}</td>
+                      <td>{volunteerScore.toFixed(1)}</td>
+                      <td>{bonusScore.toFixed(1)}</td>
+                      <td>{totalScore.toFixed(1)}</td>
                     </tr>
                   </tbody>
                 </S.Table>
