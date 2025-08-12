@@ -12,30 +12,30 @@ export const MainContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding-left: calc((100vw - 802px) / 2);
+  padding-left: calc((100vw - 600px) / 2);
 `;
 
 export const Title = styled.p`
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 600;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 `
 
 export const Wrap = styled.div`
   display: flex;
-  gap: 42px;
+  gap: 30px;
 `
 
 export const ContentWrap = styled.div`
-  width: 718px;
-  height: 168px;
+  width: 500px;
+  height: 120px;
   background-color: #f8fafd;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 34px;
-  gap: 14px;
+  padding: 0 24px;
+  gap: 12px;
 `;
 
 export const RadioWrap = styled.div`
@@ -44,7 +44,7 @@ export const RadioWrap = styled.div`
 `;
 
 export const ContentTitle = styled.p`
-  font-size: 22px;
+  font-size: 18px;
 `;
 
 export const ButtonWrap = styled.div`
