@@ -15,9 +15,12 @@ import type { AddPointState } from "../../types/write/addPoint/addPoint.type";
 import WriteGrade from "../../components/write/writeGrade";
 import { Header } from "../../components/common/Header";
 import { Footer } from "../../components/common/Footer";
+import { useNavigate } from "react-router-dom";
 // import NavigateBar from "../../components/common/NavigateBar";
 
 const WritePage = () => {
+  const navigate = useNavigate();
+
   const [freeSem, setFreeSem] = useState<FreeSemType>({
     freeSem11: false,
     freeSem12: false,
@@ -52,6 +55,21 @@ const WritePage = () => {
   useEffect(() => {
     console.log(grades);
   }, [grades]);
+
+  const handleNext = () => {
+    navigate("/score", {
+      state: {
+        // 순서대로 학기별 자율학기제 여부, 성적, 출결, 봉사시간, 가산점
+        freeSem,
+        grades,
+        attendance,
+        volunteerTime,
+        addPoint,
+        // 아직 세빈이가 start page 덜 만들어서 다 만든 후 studentType 관련 수정
+        studentType: "",
+      },
+    });
+  };
 
   return (
     <>
@@ -97,7 +115,7 @@ const WritePage = () => {
             </S.ScoreContainer>
 
             <S.ButtonsWrap>
-              <Button text="다음" variant="primary" />
+              <Button text="다음" variant="primary" onClick={handleNext} />
               <Button text="이전" variant="gray" />
             </S.ButtonsWrap>
           </S.Contents>
