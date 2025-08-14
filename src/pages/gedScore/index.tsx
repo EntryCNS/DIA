@@ -11,6 +11,7 @@ const ScorePage = () => {
    korean: "0",
    english: "0",
    math: "0",
+   society: "0",
    science: "0",
    elective: "0",
  });
@@ -43,6 +44,7 @@ const ScorePage = () => {
                      <th>국어</th>
                      <th>영어</th>
                      <th>수학</th>
+                     <th>사회</th>
                      <th>과학</th>
                      <th>선택과목</th>
                    </tr>
@@ -68,6 +70,13 @@ const ScorePage = () => {
                        <S.ScoreInput
                          type="number"
                          value={scores.math}
+                         onChange={(e) => handleChange("math", e.target.value)}
+                       />
+                     </td>
+                     <td>
+                       <S.ScoreInput
+                         type="number"
+                         value={scores.society}
                          onChange={(e) => handleChange("math", e.target.value)}
                        />
                      </td>
