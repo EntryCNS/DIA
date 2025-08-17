@@ -16,16 +16,20 @@ const ScorePage = () => {
    elective: "0",
  });
 
- const handleChange = (subject: string, value: string) => {
-   if (/^\d*$/.test(value)) {
-     setScores((prev) => ({ ...prev, [subject]: value }));
-   }
- };
+  const handleChange = (subject: string, value: string) => {
+    if (/^\d*$/.test(value)) {
+      setScores((prev) => ({ ...prev, [subject]: value }));
+    }
+  };
 
  const handleNext = () => {
    navigate('/score', {
      state: { scores, studentType: "gedStu"}
    });
+ };
+
+ const handlePrev = () => {
+   window.history.back();
  };
 
  return (
@@ -77,7 +81,7 @@ const ScorePage = () => {
                        <S.ScoreInput
                          type="number"
                          value={scores.society}
-                         onChange={(e) => handleChange("math", e.target.value)}
+                         onChange={(e) => handleChange("society", e.target.value)}
                        />
                      </td>
                      <td>
@@ -100,16 +104,16 @@ const ScorePage = () => {
              </S.TableWrapper>
            </S.ScoreContainer>
 
-           <S.ButtonsWrap>
-             <Button text="다음" variant="primary" onClick={handleNext} />
-             <Button text="이전" variant="gray" />
-           </S.ButtonsWrap>
-         </S.Contents>
-       </S.Wrap>
-     </S.Body>
-     <Footer />
-   </>
- );
+            <S.ButtonsWrap>
+              <Button text="다음" variant="primary" onClick={handleNext} />
+              <Button text="이전" variant="gray" onClick={handlePrev}/>
+            </S.ButtonsWrap>
+          </S.Contents>
+        </S.Wrap>
+      </S.Body>
+      <Footer />
+    </>
+  );
 };
 
 export default ScorePage;
