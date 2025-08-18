@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import * as S from "./style";
 import { Button } from "../../components/common/Button";
 import RadioBox from "../../components/start";
@@ -6,6 +6,16 @@ import { Header } from "../../components/common/Header";
 import { Footer } from "../../components/common/Footer";
 
 const Start = () => {
+  const [selectedValue, setSelectedValue] = useState<string>("");
+
+  const handleRadioChange = (value: string) => {
+    setSelectedValue(value);
+  };
+
+  const getNextButtonHref = () => {
+    return selectedValue === "highschool" ? "/gedScore" : undefined;
+  };
+
   return (
     <S.PageContainer>
         <Header />
@@ -15,13 +25,13 @@ const Start = () => {
           <S.ContentWrap>
             <S.ContentTitle>졸업구분</S.ContentTitle>
             <S.RadioWrap>
-              <RadioBox text="졸업예정" value="expected" />
-              <RadioBox text="졸업생" value="graduate" />
-              <RadioBox text="고입검정" value="highschool" />
+              <RadioBox text="졸업예정" value="expected" selectedValue={selectedValue} onChange={handleRadioChange} />
+              <RadioBox text="졸업생" value="graduate" selectedValue={selectedValue} onChange={handleRadioChange} />
+              <RadioBox text="고입검정" value="highschool" selectedValue={selectedValue} onChange={handleRadioChange} />
             </S.RadioWrap>
           </S.ContentWrap>
           <S.ButtonWrap>
-            <Button text="다음" />
+            <Button text="다음" href={getNextButtonHref()} />
             <Button text="이전" variant="gray" />
           </S.ButtonWrap>
         </S.Wrap>
