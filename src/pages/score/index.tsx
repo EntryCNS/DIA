@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import * as S from "./style";
 import { Button } from "../../components/common/Button";
-import { useLocation } from "react-router-dom";
 import { Header } from "../../components/common/Header";
 import { Footer } from "../../components/common/Footer";
 // import NavigateBar from "../../components/common/NavigateBar";
 import { GedTaker } from "../../lib/gedTaker";
 import { calcPreGradScore } from "../../lib/PreGrad";
 import { calcGradScore } from "../../lib/Graduate";
-import { formatScore } from "../../utils/formatScore";
 import { calcBonusScore } from "../../lib/bonusScore";
 import { calcVolunteerTimeScore } from "../../lib/volunteerTimeScore";
 import { calcAttendanceScore } from "../../lib/attendanceScore";
+import { formatScore } from "../../utils/formatScore";
 
 const ScorePage = () => {
   const [sujbjectScore, setSubjectScore] = useState(0);
@@ -48,7 +48,7 @@ const ScorePage = () => {
       setSubjectScore(
         typeof normalCalculatedScore === "number"
           ? normalCalculatedScore
-          : normalCalculatedScore.score
+          : 0
       );
       //가산점 계산
       const bonusScore = calcBonusScore(addPoint);
