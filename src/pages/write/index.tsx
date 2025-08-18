@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "../../components/common/Button";
 import * as S from "./style";
 import {
@@ -52,10 +52,6 @@ const WritePage = () => {
     modelAward: "0",
   });
 
-  useEffect(() => {
-    console.log(grades);
-  }, [grades]);
-
   const handleNext = () => {
     navigate("/score", {
       state: {
@@ -66,7 +62,7 @@ const WritePage = () => {
         volunteerTime,
         addPoint,
         // 아직 세빈이가 start page 덜 만들어서 다 만든 후 studentType 관련 수정
-        studentType: "",
+        studentType: "normalStu",
       },
     });
   };
