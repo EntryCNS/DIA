@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import * as S from "./style";
 import { Button } from "../../components/common/Button";
 import { useLocation } from "react-router-dom";
@@ -5,7 +6,8 @@ import { Header } from "../../components/common/Header";
 import { Footer } from "../../components/common/Footer";
 // import NavigateBar from "../../components/common/NavigateBar";
 import { GedTaker } from "../../lib/gedTaker";
-import { useState, useEffect } from "react";
+import { calcReenrolledScore } from "../../lib/PreGrad";
+import { formatScore } from "../../utils/formatScore";
 
 const ScorePage = () => {
   const [sujbjectScore, setSubjectScore] = useState(0);
@@ -15,17 +17,37 @@ const ScorePage = () => {
   const [totalScore, setTotalScore] = useState(0);
 
   const { state } = useLocation();
-  const { scores, studentType } = state || { scores: {}, studentType: "" };
+  // const { scores, studentType } = state || { scores: {}, studentType: "normalStu" };
+  const {freeSem, grades, attendance, volunteerTime, addPoint, studentType} = state || {
+    freeSem: {},
+    grades: {},
+    attendance: {},
+    volunteerTime: {},
+    addPoint: {},
+    studentType: "",
+  };
 
   useEffect(() => {
+    if (!studentType) {
+      console.error("studentType is not defined in state");
+      return;
+    }
+    
+    console.log("입려된 데이터 ",freeSem, grades, attendance, volunteerTime, addPoint, studentType)
+
     if (studentType == "gedStu") {
-      const calculatedScore = GedTaker({ scores });
+      const calculatedScore = GedTaker({ scores: grades });
       setSubjectScore(calculatedScore);
     } else if (studentType == "normalStu") {
-      // const calculatedScore = GedTaker({ scores });
-      // setSubjectScore(calculatedScore);
-    }
-  }, [studentType, scores]);
+      const normalCalculatedScore = calcReenrolledScore(grades);
+      setSubjectScore(
+        typeof normalCalculatedScore === "number"
+          ? normalCalculatedScore
+          : normalCalculatedScore.score
+      );
+    } else if (stu)
+  }, [studentType, grades]);
+
 
   useEffect(() => {
     setTotalScore(
@@ -35,10 +57,6 @@ const ScorePage = () => {
         (bonusScore || 0)
     );
   }, [sujbjectScore, attendanceScore, volunteerScore, bonusScore]);
-
-  const handlePrev = () => {
-    window.history.back();
-  };
 
   return (
     <>
@@ -64,11 +82,11 @@ const ScorePage = () => {
                   <tbody>
                     <tr>
                       <td className="check-title">점수확인</td>
-                      <td>{sujbjectScore.toFixed(1)}</td>
-                      <td>{attendanceScore.toFixed(1)}</td>
-                      <td>{volunteerScore.toFixed(1)}</td>
-                      <td>{bonusScore.toFixed(1)}</td>
-                      <td>{totalScore.toFixed(1)}</td>
+                      <td>{formatScore(sujbjectScore)}</td>
+                      <td>{formatScore(attendanceScore)}</td>
+                      <td>{formatScore(volunteerScore)}</td>
+                      <td>{formatScore(bonusScore)}</td>
+                      <td>{formatScore(totalScore)}</td>
                     </tr>
                   </tbody>
                 </S.Table>
@@ -81,7 +99,7 @@ const ScorePage = () => {
                 href="https://dgsw.dge.hs.kr/dgswh/main.do"
                 variant="primary"
               />
-              <Button text="이전" variant="gray" onClick={handlePrev} />
+              <Button text="이전" variant="gray" />
             </S.ButtonsWrap>
           </S.Contents>
         </S.Wrap>
