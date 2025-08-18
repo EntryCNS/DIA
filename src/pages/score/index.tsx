@@ -6,9 +6,10 @@ import { Header } from "../../components/common/Header";
 import { Footer } from "../../components/common/Footer";
 // import NavigateBar from "../../components/common/NavigateBar";
 import { GedTaker } from "../../lib/gedTaker";
-import { calcReenrolledScore } from "../../lib/PreGrad";
-import { Graduate } from "../../lib/Graduate";
+import { calcPreGradScore } from "../../lib/PreGrad";
+import { calcGradScore } from "../../lib/Graduate";
 import { formatScore } from "../../utils/formatScore";
+import { calcBonusScore } from "../../lib/bonusScore";
 
 const ScorePage = () => {
   const [sujbjectScore, setSubjectScore] = useState(0);
@@ -38,22 +39,30 @@ const ScorePage = () => {
     console.log("입려된 데이터 ",freeSem, grades, attendance, volunteerTime, addPoint, studentType)
 
     if (studentType == "gedStu") {
-      const calculatedScore = GedTaker({ scores: grades });
-      setSubjectScore(calculatedScore);
+      const gedStuCalculatedScore = GedTaker({ scores: grades });
+      setSubjectScore(gedStuCalculatedScore);
     }
     
     else if (studentType == "normalStu") {
-      const normalCalculatedScore = calcReenrolledScore(grades);
+      const normalCalculatedScore = calcPreGradScore(grades);
       setSubjectScore(
         typeof normalCalculatedScore === "number"
           ? normalCalculatedScore
           : normalCalculatedScore.score
       );
+      // setAttendanceScore();
+      // setVolunteerScore();
+      const bonusScore = calcBonusScore(addPoint);
+      setBonusScore(bonusScore);
     }
     
     else if (studentType === "graduate") {
-      const GraduateCalculatedScore = Graduate(grades)
-      setSubjectScore(GraduateCalculatedScore);
+      const GraduateCalculatedScore = calcGradScore(grades)
+      setSubjectScore(
+        typeof GraduateCalculatedScore === "number"
+          ? GraduateCalculatedScore
+          : GraduateCalculatedScore.score
+      );
     }
 
   }, [studentType, grades]);
