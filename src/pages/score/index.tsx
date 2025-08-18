@@ -7,17 +7,18 @@ import { Footer } from "../../components/common/Footer";
 // import NavigateBar from "../../components/common/NavigateBar";
 import { GedTaker } from "../../lib/gedTaker";
 import { calcReenrolledScore } from "../../lib/PreGrad";
+import { Graduate } from "../../lib/Graduate";
 import { formatScore } from "../../utils/formatScore";
 
 const ScorePage = () => {
   const [sujbjectScore, setSubjectScore] = useState(0);
-  const [attendanceScore, setAttendanceScore] = useState(0);
-  const [volunteerScore, setVolunteerScore] = useState(0);
-  const [bonusScore, setBonusScore] = useState(0);
-  const [totalScore, setTotalScore] = useState(0);
+  const [attendanceScore, setAttendanceScore] = useState(0); //출결점수
+  const [volunteerScore, setVolunteerScore] = useState(0); //봉사점수
+  const [bonusScore, setBonusScore] = useState(0); //가산점
+  const [totalScore, setTotalScore] = useState(0); //총점
 
+  // 페이지에서 전달된 상태를 가져오기
   const { state } = useLocation();
-  // const { scores, studentType } = state || { scores: {}, studentType: "normalStu" };
   const {freeSem, grades, attendance, volunteerTime, addPoint, studentType} = state || {
     freeSem: {},
     grades: {},
@@ -27,6 +28,7 @@ const ScorePage = () => {
     studentType: "",
   };
 
+  //학생 타입에 따라 점수 계산
   useEffect(() => {
     if (!studentType) {
       console.error("studentType is not defined in state");
@@ -38,17 +40,26 @@ const ScorePage = () => {
     if (studentType == "gedStu") {
       const calculatedScore = GedTaker({ scores: grades });
       setSubjectScore(calculatedScore);
-    } else if (studentType == "normalStu") {
+    }
+    
+    else if (studentType == "normalStu") {
       const normalCalculatedScore = calcReenrolledScore(grades);
       setSubjectScore(
         typeof normalCalculatedScore === "number"
           ? normalCalculatedScore
           : normalCalculatedScore.score
       );
-    } else if (stu)
+    }
+    
+    else if (studentType === "graduate") {
+      const GraduateCalculatedScore = Graduate(grades)
+      setSubjectScore(GraduateCalculatedScore);
+    }
+
   }, [studentType, grades]);
 
 
+  //총점 계산
   useEffect(() => {
     setTotalScore(
       (sujbjectScore || 0) +
