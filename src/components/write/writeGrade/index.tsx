@@ -15,6 +15,25 @@ interface GradePropsType {
   setGrades: React.Dispatch<React.SetStateAction<GradesType>>;
 }
 
+// 학기 키 매핑
+const semesterMap = [
+  "grade11",
+  "grade12",
+  "grade21",
+  "grade22",
+  "grade31",
+  "grade32",
+] as const;
+
+const freeSemMap = [
+  "freeSem11",
+  "freeSem12",
+  "freeSem21",
+  "freeSem22",
+  "freeSem31",
+  "freeSem32",
+] as const;
+
 const WriteGrade = ({
   freeSem,
   setFreeSem,
@@ -30,19 +49,37 @@ const WriteGrade = ({
       const updated = { ...prev };
       const subjectGrade = { ...updated[subject] };
 
-      const semesterMap = [
-        "grade11",
-        "grade12",
-        "grade21",
-        "grade22",
-        "grade31",
-        "grade32",
-      ] as const;
-
       subjectGrade[semesterMap[semesterIndex]] = value;
       updated[subject] = subjectGrade;
       return updated;
     });
+  };
+
+  // 자유학기제 토글 핸들러
+  const toggleFreeSem = (index: number) => {
+    const semKey = freeSemMap[index];
+    const gradeKey = semesterMap[index];
+
+    const next = !freeSem[semKey];
+
+    setFreeSem({
+      ...freeSem,
+      [semKey]: next,
+    });
+
+    // 자유학기제 활성화 시 성적 초기화
+    if (next) {
+      setGrades((prev) => {
+        const updated = { ...prev };
+        (Object.keys(updated) as (keyof GradesType)[]).forEach((subject) => {
+          updated[subject] = {
+            ...updated[subject],
+            [gradeKey]: defaultGrades[subject][gradeKey],
+          };
+        });
+        return updated;
+      });
+    }
   };
 
   return (
@@ -79,84 +116,16 @@ const WriteGrade = ({
           <th className="gray">2학기</th>
         </tr>
         <tr>
-          <th className="white">
-            <ToggleButton
-              className={freeSem.freeSem11 ? "on" : "off"}
-              onClick={() =>
-                setFreeSem({
-                  ...freeSem,
-                  freeSem11: !freeSem.freeSem11,
-                })
-              }
-            >
-              자유학기제
-            </ToggleButton>
-          </th>
-          <th className="white">
-            <ToggleButton
-              className={freeSem.freeSem12 ? "on" : "off"}
-              onClick={() =>
-                setFreeSem({
-                  ...freeSem,
-                  freeSem12: !freeSem.freeSem12,
-                })
-              }
-            >
-              자유학기제
-            </ToggleButton>
-          </th>
-          <th className="white">
-            <ToggleButton
-              className={freeSem.freeSem21 ? "on" : "off"}
-              onClick={() =>
-                setFreeSem({
-                  ...freeSem,
-                  freeSem21: !freeSem.freeSem21,
-                })
-              }
-            >
-              자유학기제
-            </ToggleButton>
-          </th>
-          <th className="white">
-            <ToggleButton
-              className={freeSem.freeSem22 ? "on" : "off"}
-              onClick={() =>
-                setFreeSem({
-                  ...freeSem,
-                  freeSem22: !freeSem.freeSem22,
-                })
-              }
-            >
-              자유학기제
-            </ToggleButton>
-          </th>
-          <th className="white">
-            <ToggleButton
-              className={freeSem.freeSem31 ? "on" : "off"}
-              onClick={() =>
-                setFreeSem({
-                  ...freeSem,
-                  freeSem31: !freeSem.freeSem31,
-                })
-              }
-            >
-              자유학기제
-            </ToggleButton>
-          </th>
-          <th className="white">
-            <ToggleButton
-              className={freeSem.freeSem32 ? "on" : "off"}
-              onClick={() =>
-                setFreeSem({
-                  ...freeSem,
-                  freeSem32: !freeSem.freeSem32,
-                })
-              }
-            >
-              자유학기제
-            </ToggleButton>
-          </th>
+          {freeSemMap.map((semKey, idx) => (
+            <th key={semKey} className="white">
+              <ToggleButton
+                className={freeSem[semKey] ? "on" : "off"}
+                onClick={() => toggleFreeSem(idx)}
+              >
+                자유학기제
+              </ToggleButton>
+            </th>
+          ))}
         </tr>
       </thead>
       <tbody>
@@ -184,6 +153,9 @@ export const ToggleButton = styled.button`
   border: 1px solid #d8dae0;
   color: #8b939c;
   user-select: none;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
 
   &.on {
     border: 1px solid #1485ee;
