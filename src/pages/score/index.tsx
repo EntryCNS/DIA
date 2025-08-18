@@ -10,6 +10,8 @@ import { calcPreGradScore } from "../../lib/PreGrad";
 import { calcGradScore } from "../../lib/Graduate";
 import { formatScore } from "../../utils/formatScore";
 import { calcBonusScore } from "../../lib/bonusScore";
+import { calcVolunteerTimeScore } from "../../lib/volunteerTimeScore";
+import { calcAttendanceScore } from "../../lib/attendanceScore";
 
 const ScorePage = () => {
   const [sujbjectScore, setSubjectScore] = useState(0);
@@ -35,8 +37,6 @@ const ScorePage = () => {
       console.error("studentType is not defined in state");
       return;
     }
-    
-    console.log("입려된 데이터 ",freeSem, grades, attendance, volunteerTime, addPoint, studentType)
 
     if (studentType == "gedStu") {
       const gedStuCalculatedScore = GedTaker({ scores: grades });
@@ -44,28 +44,44 @@ const ScorePage = () => {
     }
     
     else if (studentType == "normalStu") {
+      //졸업 예정자 성적 계산
       const normalCalculatedScore = calcPreGradScore(grades);
       setSubjectScore(
         typeof normalCalculatedScore === "number"
           ? normalCalculatedScore
           : normalCalculatedScore.score
       );
-      // setAttendanceScore();
-      // setVolunteerScore();
+      //가산점 계산
       const bonusScore = calcBonusScore(addPoint);
       setBonusScore(bonusScore);
+      // 봉사 시간 점수 계산
+      const volunteerScore = calcVolunteerTimeScore(volunteerTime);
+      setVolunteerScore(volunteerScore);
+      // 출결 점수 계산
+      const attendanceScore = calcAttendanceScore(attendance);
+      setAttendanceScore(attendanceScore);
+
     }
-    
     else if (studentType === "graduate") {
+      // 졸업생 성적 계산
       const GraduateCalculatedScore = calcGradScore(grades)
       setSubjectScore(
         typeof GraduateCalculatedScore === "number"
           ? GraduateCalculatedScore
           : GraduateCalculatedScore.score
       );
+      // 가산점 계산
+      const bonusScore = calcBonusScore(addPoint);
+      setBonusScore(bonusScore);
+      // 봉사 시간 점수 계산
+      const volunteerScore = calcVolunteerTimeScore(volunteerTime);
+      setVolunteerScore(volunteerScore);
+      // 출결 점수 계산
+      const attendanceScore = calcAttendanceScore(attendance);
+      setAttendanceScore(attendanceScore);
     }
 
-  }, [studentType, grades]);
+  }, [freeSem, grades, attendance, volunteerTime, addPoint, studentType]);
 
 
   //총점 계산
