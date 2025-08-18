@@ -42,6 +42,7 @@ const WriteGradeListItem = ({
           <select
             onChange={(e) => onChange(0, e.target.value as Score, subject)}
             value={grades.grade11}
+            disabled={freeSem.freeSem11}
           >
             <option value="NONE">-</option>
             <option value="A">A</option>
