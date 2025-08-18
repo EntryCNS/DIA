@@ -1,12 +1,5 @@
 //졸업 예정자
-
-type Grade = "A"|"B"|"C"|"D"|"E"|"P"|"NONE";
-type SemesterKey = "grade11"|"grade12"|"grade21"|"grade22"|"grade31"|"grade32";
-type SubjectKey =
-  "korean"|"society"|"history"|"morality"|
-  "math"|"science"|"cs"|"english";
-
-type Input = Record<SubjectKey, Record<SemesterKey, Grade>>;
+import type { Grade, Input, SemesterKey, SubjectKey } from "../types/calcTypes";
 
 // 성취도 환산: A=5, B=4, C=3, D=2, E=1 (P/NONE은 미반영)
 const gradePoint: Record<Exclude<Grade,"P"|"NONE">, number> = {
@@ -25,7 +18,7 @@ const termWeight: Partial<Record<SemesterKey, number>> = {
   // 재학생은 grade32 미반영
 };
 
-export function calcReenrolledScore(input: Input) {
+export function calcPreGradScore(input: Input) {
   // 학기별 A_ij, N_ij, 평균 계산
   const semesters: SemesterKey[] = ["grade11","grade12","grade21","grade22","grade31"];
   const termA: Record<SemesterKey, number> = {grade11:0,grade12:0,grade21:0,grade22:0,grade31:0,grade32:0};
