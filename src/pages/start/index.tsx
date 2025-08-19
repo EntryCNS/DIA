@@ -13,7 +13,12 @@ const Start = () => {
   };
 
   const getNextButtonHref = () => {
-    return selectedValue === "highschool" ? "/gedScore" : undefined;
+    if (selectedValue === "highschool") {
+      return "/gedScore";
+    } else if (selectedValue === "expected" || selectedValue === "graduate") {
+      return "/write";
+    }
+    return undefined;
   };
 
   return (
