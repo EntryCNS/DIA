@@ -9,7 +9,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const buttonStyles = {
-    primary: css`
+  primary: css`
     background-color: white;
     color: #1485EE;
     border: 1px solid #1485EE;
@@ -21,7 +21,7 @@ const buttonStyles = {
   `,
 };
 
-const StyledButton = styled.button<{ variant: Variant }>`
+const StyledButton = styled.button<{ $variant: Variant }>`
   width: 240px;
   height: 58px;
   border-radius: 8px;
@@ -32,7 +32,7 @@ const StyledButton = styled.button<{ variant: Variant }>`
   align-items: center;
   justify-content: center;
 
-  ${({ variant }) => buttonStyles[variant]}
+  ${({ $variant }) => buttonStyles[$variant]}
 
   &:disabled {
     opacity: 0.6;
@@ -44,7 +44,7 @@ export function Button({ text, variant = "primary", href, ...props }: ButtonProp
   if (href) {
     return (
       <a href={href} style={{ textDecoration: "none" }}>
-        <StyledButton as="div" variant={variant}>
+        <StyledButton as="div" $variant={variant}>
           {text}
         </StyledButton>
       </a>
@@ -52,7 +52,7 @@ export function Button({ text, variant = "primary", href, ...props }: ButtonProp
   }
 
   return (
-    <StyledButton variant={variant} {...props}>
+    <StyledButton $variant={variant} {...props}>
       {text}
     </StyledButton>
   );
