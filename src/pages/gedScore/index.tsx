@@ -7,7 +7,7 @@ import { Footer } from "../../components/common/Footer";
 
 const ScorePage = () => {
  const navigate = useNavigate();
- const [scores, setScores] = useState({
+ const [grades, setGrades] = useState({
    korean: "0",
    english: "0",
    math: "0",
@@ -18,18 +18,14 @@ const ScorePage = () => {
 
   const handleChange = (subject: string, value: string) => {
     if (/^\d*$/.test(value)) {
-      setScores((prev) => ({ ...prev, [subject]: value }));
+      setGrades((prev) => ({ ...prev, [subject]: value }));
     }
   };
 
  const handleNext = () => {
    navigate('/score', {
-     state: { scores, studentType: "gedStu"}
+     state: { grades, studentType: "gedStu"}
    });
- };
-
- const handlePrev = () => {
-   window.history.back();
  };
 
  return (
@@ -59,42 +55,42 @@ const ScorePage = () => {
                      <td>
                        <S.ScoreInput
                          type="number"
-                         value={scores.korean}
+                         value={grades.korean}
                          onChange={(e) => handleChange("korean", e.target.value)}
                        />
                      </td>
                      <td>
                        <S.ScoreInput
                          type="number"
-                         value={scores.english}
+                         value={grades.english}
                          onChange={(e) => handleChange("english", e.target.value)}
                        />
                      </td>
                      <td>
                        <S.ScoreInput
                          type="number"
-                         value={scores.math}
+                         value={grades.math}
                          onChange={(e) => handleChange("math", e.target.value)}
                        />
                      </td>
                      <td>
                        <S.ScoreInput
                          type="number"
-                         value={scores.society}
+                         value={grades.society}
                          onChange={(e) => handleChange("society", e.target.value)}
                        />
                      </td>
                      <td>
                        <S.ScoreInput
                          type="number"
-                         value={scores.science}
+                         value={grades.science}
                          onChange={(e) => handleChange("science", e.target.value)}
                        />
                      </td>
                      <td>
                        <S.ScoreInput
                          type="number"
-                         value={scores.elective}
+                         value={grades.elective}
                          onChange={(e) => handleChange("elective", e.target.value)}
                        />
                      </td>
@@ -106,7 +102,7 @@ const ScorePage = () => {
 
             <S.ButtonsWrap>
               <Button text="다음" variant="primary" onClick={handleNext} />
-              <Button text="이전" variant="gray" onClick={handlePrev}/>
+              <Button text="이전" variant="gray" />
             </S.ButtonsWrap>
           </S.Contents>
         </S.Wrap>
