@@ -24,7 +24,7 @@ export const StepsWrapper = styled.div`
 
 export const StepItem = styled.div`
   display: flex;
-  flex-direction: row; /* 텍스트 옆으로 */
+  flex-direction: row;
   align-items: center;
   position: relative;
 `;
@@ -38,7 +38,7 @@ export const StepCircle = styled.div<{ $isActive: boolean }>`
   justify-content: center;
   font-size: 16px;
   font-weight: 600;
-  margin-right: 8px; /* 텍스트와 간격 */
+  margin-right: 8px;
   position: relative;
   z-index: 3;
   
@@ -55,14 +55,14 @@ export const StepCircle = styled.div<{ $isActive: boolean }>`
 export const StepLabel = styled.span<{ $isActive: boolean }>`
   font-size: 14px;
   font-weight: ${({ $isActive }) => ($isActive ? '600' : '400')};
-  color: ${({ $isActive }) => ($isActive ? '#000000' : '#666')}; /* 현재 단계는 검정색 */
+  color: ${({ $isActive }) => ($isActive ? '#000000' : '#666')};
   white-space: nowrap;
 `;
 
 export const StepLine = styled.div`
-  width: 23px; /* 선 길이 조정 가능 */
+  width: 23px;
   height: 2px;
-  background-color: #e0e0e0; /* 항상 회색 */
+  background-color: #e0e0e0;
   margin: 0 200px;
   position: relative;
   z-index: 1;
