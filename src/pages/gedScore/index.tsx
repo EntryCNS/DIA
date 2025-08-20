@@ -22,11 +22,11 @@ const ScorePage = () => {
     }
   };
 
- const handleNext = () => {
-   navigate('/score', {
-     state: { grades, studentType: "gedStu"}
-   });
- };
+  const handleNext = () => {
+    navigate("/result", {
+      state: { grades, studentType: "gedStu" },
+    });
+  };
 
  return (
    <>

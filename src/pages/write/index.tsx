@@ -53,7 +53,7 @@ const WritePage = () => {
   });
 
   const handleNext = () => {
-    navigate("/score", {
+    navigate("/result", {
       state: {
         // 순서대로 학기별 자율학기제 여부, 성적, 출결, 봉사시간, 가산점
         freeSem,
