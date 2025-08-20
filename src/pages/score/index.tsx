@@ -14,7 +14,7 @@ import { calcAttendanceScore } from "../../lib/attendanceScore";
 import { formatScore } from "../../utils/formatScore";
 
 const ScorePage = () => {
-  const [sujbjectScore, setSubjectScore] = useState(0);
+  const [subjectScore, setSubjectScore] = useState(0);
   const [attendanceScore, setAttendanceScore] = useState(0); //출결점수
   const [volunteerScore, setVolunteerScore] = useState(0); //봉사점수
   const [bonusScore, setBonusScore] = useState(0); //가산점
@@ -39,26 +39,21 @@ const ScorePage = () => {
       return;
     }
 
-    if (studentType == "gedStu") {
+    let bonusScore, volunteerScore, attendanceScore;
+
+    if (studentType === "gedStu") {
       const gedStuCalculatedScore = GedTaker({ scores: grades });
       setSubjectScore(gedStuCalculatedScore);
-    } else if (studentType == "normalStu") {
+    } else if (studentType === "normalStu") {
       //졸업 예정자 성적 계산
       const normalCalculatedScore = calcPreGradScore(grades, freeSem);
       setSubjectScore(
-        typeof normalCalculatedScore === "number"
-          ? normalCalculatedScore
-          : 0
+        typeof normalCalculatedScore === "number" ? normalCalculatedScore : 0
       );
-      //가산점 계산
-      const bonusScore = calcBonusScore(addPoint);
-      setBonusScore(bonusScore);
-      // 봉사 시간 점수 계산
-      const volunteerScore = calcVolunteerTimeScore(volunteerTime);
-      setVolunteerScore(volunteerScore);
-      // 출결 점수 계산
-      const attendanceScore = calcAttendanceScore(attendance);
-      setAttendanceScore(attendanceScore);
+      
+      bonusScore = calcBonusScore(addPoint);  //가산점 계산
+      volunteerScore = calcVolunteerTimeScore(volunteerTime);  // 봉사 시간 점수 계산
+      attendanceScore = calcAttendanceScore(attendance);  // 출결 점수 계산
     } else if (studentType === "graduate") {
       // 졸업생 성적 계산
       const GraduateCalculatedScore = calcGradScore(grades, freeSem);
@@ -67,27 +62,26 @@ const ScorePage = () => {
           ? GraduateCalculatedScore
           : GraduateCalculatedScore.score
       );
-      // 가산점 계산
-      const bonusScore = calcBonusScore(addPoint);
-      setBonusScore(bonusScore);
-      // 봉사 시간 점수 계산
-      const volunteerScore = calcVolunteerTimeScore(volunteerTime);
-      setVolunteerScore(volunteerScore);
-      // 출결 점수 계산
-      const attendanceScore = calcAttendanceScore(attendance);
-      setAttendanceScore(attendanceScore);
+
+      bonusScore = calcBonusScore(addPoint); // 가산점 계산
+      volunteerScore = calcVolunteerTimeScore(volunteerTime); // 봉사 시간 점수 계산
+      attendanceScore = calcAttendanceScore(attendance); // 출결 점수 계산
     }
+
+    setBonusScore(bonusScore ?? 0);
+    setVolunteerScore(volunteerScore ?? 0);
+    setAttendanceScore(attendanceScore ?? 0);
   }, [freeSem, grades, attendance, volunteerTime, addPoint, studentType]);
 
   //총점 계산
   useEffect(() => {
     setTotalScore(
-      (sujbjectScore || 0) +
+      (subjectScore || 0) +
         (attendanceScore || 0) +
         (volunteerScore || 0) +
         (bonusScore || 0)
     );
-  }, [sujbjectScore, attendanceScore, volunteerScore, bonusScore]);
+  }, [subjectScore, attendanceScore, volunteerScore, bonusScore]);
 
   return (
     <>
@@ -113,7 +107,7 @@ const ScorePage = () => {
                   <tbody>
                     <tr>
                       <td className="check-title">점수확인</td>
-                      <td>{formatScore(sujbjectScore)}</td>
+                      <td>{formatScore(subjectScore)}</td>
                       <td>{formatScore(attendanceScore)}</td>
                       <td>{formatScore(volunteerScore)}</td>
                       <td>{formatScore(bonusScore)}</td>
