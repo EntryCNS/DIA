@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
 import * as S from "./style";
-import { Button } from "../../components/common/Button";
 import { useLocation } from "react-router-dom";
-import { Header } from "../../components/common/Header";
-import { Footer } from "../../components/common/Footer";
-// import NavigateBar from "../../components/common/NavigateBar";
-import { GedTaker } from "../../lib/gedTaker";
-import { calcPreGradScore } from "../../lib/PreGrad";
-import { calcGradScore } from "../../lib/Graduate";
+import { Button, Header, Footer /*, NavigateBar*/ } from "../../components";
+import {
+  GedTaker,
+  calcPreGradScore,
+  calcGradScore,
+  calcBonusScore,
+  calcVolunteerTimeScore,
+  calcAttendanceScore,
+} from "../../lib/index";
 import { formatScore } from "../../utils/formatScore";
-import { calcBonusScore } from "../../lib/bonusScore";
-import { calcVolunteerTimeScore } from "../../lib/volunteerTimeScore";
-import { calcAttendanceScore } from "../../lib/attendanceScore";
 
 const ScorePage = () => {
   const [sujbjectScore, setSubjectScore] = useState(0);
@@ -22,14 +21,15 @@ const ScorePage = () => {
 
   // 페이지에서 전달된 상태를 가져오기
   const { state } = useLocation();
-  const {freeSem, grades, attendance, volunteerTime, addPoint, studentType} = state || {
-    freeSem: {},
-    grades: {},
-    attendance: {},
-    volunteerTime: {},
-    addPoint: {},
-    studentType: "",
-  };
+  const { freeSem, grades, attendance, volunteerTime, addPoint, studentType } =
+    state || {
+      freeSem: {},
+      grades: {},
+      attendance: {},
+      volunteerTime: {},
+      addPoint: {},
+      studentType: "",
+    };
 
   //학생 타입에 따라 점수 계산
   useEffect(() => {
@@ -41,9 +41,7 @@ const ScorePage = () => {
     if (studentType == "gedStu") {
       const gedStuCalculatedScore = GedTaker({ scores: grades });
       setSubjectScore(gedStuCalculatedScore);
-    }
-    
-    else if (studentType == "normalStu") {
+    } else if (studentType == "normalStu") {
       //졸업 예정자 성적 계산
       const normalCalculatedScore = calcPreGradScore(grades);
       setSubjectScore(
@@ -60,11 +58,9 @@ const ScorePage = () => {
       // 출결 점수 계산
       const attendanceScore = calcAttendanceScore(attendance);
       setAttendanceScore(attendanceScore);
-
-    }
-    else if (studentType === "graduate") {
+    } else if (studentType === "graduate") {
       // 졸업생 성적 계산
-      const GraduateCalculatedScore = calcGradScore(grades)
+      const GraduateCalculatedScore = calcGradScore(grades);
       setSubjectScore(
         typeof GraduateCalculatedScore === "number"
           ? GraduateCalculatedScore
@@ -80,9 +76,7 @@ const ScorePage = () => {
       const attendanceScore = calcAttendanceScore(attendance);
       setAttendanceScore(attendanceScore);
     }
-
   }, [freeSem, grades, attendance, volunteerTime, addPoint, studentType]);
-
 
   //총점 계산
   useEffect(() => {
