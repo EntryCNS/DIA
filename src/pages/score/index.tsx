@@ -13,7 +13,7 @@ import {
 import { formatScore } from "../../utils/formatScore";
 
 const ScorePage = () => {
-  const [sujbjectScore, setSubjectScore] = useState(0);
+  const [subjectScore, setSubjectScore] = useState(0);
   const [attendanceScore, setAttendanceScore] = useState(0); //출결점수
   const [volunteerScore, setVolunteerScore] = useState(0); //봉사점수
   const [bonusScore, setBonusScore] = useState(0); //가산점
@@ -81,12 +81,12 @@ const ScorePage = () => {
   //총점 계산
   useEffect(() => {
     setTotalScore(
-      (sujbjectScore || 0) +
+      (subjectScore || 0) +
         (attendanceScore || 0) +
         (volunteerScore || 0) +
         (bonusScore || 0)
     );
-  }, [sujbjectScore, attendanceScore, volunteerScore, bonusScore]);
+  }, [subjectScore, attendanceScore, volunteerScore, bonusScore]);
 
   return (
     <>
@@ -112,7 +112,7 @@ const ScorePage = () => {
                   <tbody>
                     <tr>
                       <td className="check-title">점수확인</td>
-                      <td>{formatScore(sujbjectScore)}</td>
+                      <td>{formatScore(subjectScore)}</td>
                       <td>{formatScore(attendanceScore)}</td>
                       <td>{formatScore(volunteerScore)}</td>
                       <td>{formatScore(bonusScore)}</td>
