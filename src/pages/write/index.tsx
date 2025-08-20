@@ -16,7 +16,7 @@ import {
   WriteGrade,
   Header,
   Footer,
-  // NavigateBar,
+  NavigateBar,
 } from "../../components/index";
 import { useNavigate } from "react-router-dom";
 
@@ -72,7 +72,7 @@ const WritePage = () => {
   return (
     <>
       <Header />
-      {/* <NavigateBar /> */}
+      <NavigateBar currentStep={2} />
       <S.Body>
         <S.Wrap>
           <p>성적일람표를 작성해 주세요</p>

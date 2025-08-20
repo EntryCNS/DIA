@@ -1,6 +1,6 @@
 import { useState } from "react";
 import * as S from "./style";
-import { Header, Footer, Button } from "../../components/index";
+import { Header, Footer, Button, NavigateBar } from "../../components/index";
 import RadioBox from "../../components/select";
 
 const Select = () => {
@@ -21,16 +21,32 @@ const Select = () => {
 
   return (
     <S.PageContainer>
-        <Header />
+      <Header />
+      <NavigateBar currentStep={1} />
       <S.MainContent>
         <S.Title>학력을 입력해주세요.</S.Title>
         <S.Wrap>
           <S.ContentWrap>
             <S.ContentTitle>졸업구분</S.ContentTitle>
             <S.RadioWrap>
-              <RadioBox text="졸업예정" value="expected" selectedValue={selectedValue} onChange={handleRadioChange} />
-              <RadioBox text="졸업생" value="graduate" selectedValue={selectedValue} onChange={handleRadioChange} />
-              <RadioBox text="고입검정" value="highschool" selectedValue={selectedValue} onChange={handleRadioChange} />
+              <RadioBox
+                text="졸업예정"
+                value="expected"
+                selectedValue={selectedValue}
+                onChange={handleRadioChange}
+              />
+              <RadioBox
+                text="졸업생"
+                value="graduate"
+                selectedValue={selectedValue}
+                onChange={handleRadioChange}
+              />
+              <RadioBox
+                text="고입검정"
+                value="highschool"
+                selectedValue={selectedValue}
+                onChange={handleRadioChange}
+              />
             </S.RadioWrap>
           </S.ContentWrap>
           <S.ButtonWrap>
