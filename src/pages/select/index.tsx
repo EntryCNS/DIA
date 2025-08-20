@@ -1,11 +1,11 @@
 import { useState } from "react";
 import * as S from "./style";
 import { Button } from "../../components/common/Button";
-import RadioBox from "../../components/start";
+import RadioBox from "../../components/select";
 import { Header } from "../../components/common/Header";
 import { Footer } from "../../components/common/Footer";
 
-const Start = () => {
+const Select = () => {
   const [selectedValue, setSelectedValue] = useState<string>("");
 
   const handleRadioChange = (value: string) => {
@@ -46,4 +46,4 @@ const Start = () => {
   );
 };
 
-export default Start;
+export default Select;
