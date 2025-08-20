@@ -8,11 +8,16 @@ interface Step {
 }
 
 interface NavigateBarProps {
-  steps: Step[];
   currentStep: number;
 }
 
-export const NavigateBar: React.FC<NavigateBarProps> = ({ steps, currentStep }) => {
+const steps: Step[] = [
+  { id: 1, label: "학력 정보" },
+  { id: 2, label: "성적 입력" },
+  { id: 3, label: "점수 확인" },
+];
+
+export const NavigateBar: React.FC<NavigateBarProps> = ({ currentStep }) => {
   return (
     <S.NavigateContainer>
       <S.StepsWrapper>
