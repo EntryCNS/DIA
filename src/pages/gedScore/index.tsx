@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./style";
-import { Button } from "../../components/common/Button";
-import { Header } from "../../components/common/Header";
-import { Footer } from "../../components/common/Footer";
+import { Button, Header, Footer } from "../../components/index";
 
 const ScorePage = () => {
   const navigate = useNavigate();
