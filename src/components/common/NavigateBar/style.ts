@@ -45,10 +45,10 @@ export const StepCircle = styled.div<{ $isActive: boolean }>`
   ${({ $isActive }) => $isActive ? `
     background-color: #2196F3;
     color: white;
-    box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.2);
+    border-color: #2196F3;
   ` : `
-    background-color: #e0e0e0;
-    color: #666;
+    border: 1px solid #D8DAE0;
+    color: #D8DAE0;
   `}
 `;
 
@@ -61,8 +61,8 @@ export const StepLabel = styled.span<{ $isActive: boolean }>`
 
 export const StepLine = styled.div`
   width: 23px;
-  height: 2px;
-  background-color: #e0e0e0;
+  height: 1px;
+  background-color: #D8DAE0;
   margin: 0 200px;
   position: relative;
   z-index: 1;
