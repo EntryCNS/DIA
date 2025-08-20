@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 export const Body = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
   min-height: 100vh;
   background-color: #ffffff;
