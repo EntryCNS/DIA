@@ -4,7 +4,7 @@ import defaultLogo from "../../../assets/DGSWLogo.svg";
 const FooterContainer = styled.footer`
   width: 100%;
   background-color: #F8FAFD;
-  padding: 40px 460px;
+  padding: 40px 140px;
   box-sizing: border-box;
   margin-top: auto;
   

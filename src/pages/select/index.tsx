@@ -1,22 +1,28 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as S from "./style";
 import { Header, Footer, Button, NavigateBar } from "../../components/index";
 import RadioBox from "../../components/select";
 
 const Select = () => {
   const [selectedValue, setSelectedValue] = useState<string>("");
+  const navigate = useNavigate();
 
   const handleRadioChange = (value: string) => {
     setSelectedValue(value);
   };
 
-  const getNextButtonHref = () => {
-    if (selectedValue === "highschool") {
-      return "/gedScore";
-    } else if (selectedValue === "expected" || selectedValue === "graduate") {
-      return "/write";
+  const handleNext = () => {
+    if (!selectedValue) {
+      alert("학력을 선택해주세요.");
+      return;
     }
-    return undefined;
+
+    navigate(`/input/${selectedValue}`, {
+      state: {
+        studentType: selectedValue,
+      },
+    });
   };
 
   return (
@@ -31,26 +37,26 @@ const Select = () => {
             <S.RadioWrap>
               <RadioBox
                 text="졸업예정"
-                value="expected"
+                value="student"
                 selectedValue={selectedValue}
                 onChange={handleRadioChange}
               />
               <RadioBox
                 text="졸업생"
-                value="graduate"
+                value="graduated"
                 selectedValue={selectedValue}
                 onChange={handleRadioChange}
               />
               <RadioBox
                 text="고입검정"
-                value="highschool"
+                value="highSchoolEntranceExamTaker"
                 selectedValue={selectedValue}
                 onChange={handleRadioChange}
               />
             </S.RadioWrap>
           </S.ContentWrap>
           <S.ButtonWrap>
-            <Button text="다음" href={getNextButtonHref()} />
+            <Button text="다음" onClick={handleNext} />
             <Button text="이전" variant="gray" />
           </S.ButtonWrap>
         </S.Wrap>
