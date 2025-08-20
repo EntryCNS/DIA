@@ -40,6 +40,10 @@ const StyledButton = styled.button<{ $variant: Variant }>`
   }
 `;
 
+const handlePrev = () => {
+  window.history.back();
+};
+
 export function Button({ text, variant = "primary", href, ...props }: ButtonProps) {
   if (href) {
     return (
@@ -53,6 +57,7 @@ export function Button({ text, variant = "primary", href, ...props }: ButtonProp
 
   return (
     <StyledButton $variant={variant} {...props}>
+    <StyledButton variant={variant} {...props} onClick={props.onClick || handlePrev}>
       {text}
     </StyledButton>
   );
