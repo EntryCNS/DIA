@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./style";
 import { Button, Header, Footer } from "../../components/index";
+import NavigateBar from "../../components/common/NavigateBar"
 
 const ScorePage = () => {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ const ScorePage = () => {
       <Header />
       <S.Body>
         <S.Wrap>
+        <NavigateBar currentStep={1} />
           <S.Title>성적일람표를 작성해 주세요.</S.Title>
           <S.Contents>
             <S.ScoreContainer>
