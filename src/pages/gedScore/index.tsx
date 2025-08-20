@@ -21,7 +21,7 @@ const ScorePage = () => {
   };
 
   const handleNext = () => {
-    navigate("/score", {
+    navigate("/result", {
       state: { grades, studentType: "gedStu" },
     });
   };
