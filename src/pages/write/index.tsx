@@ -1,22 +1,24 @@
 import { useState } from "react";
 import { Button } from "../../components/common/Button";
 import * as S from "./style";
+import { defaultGrades } from "../../types/write/grade/grade.type";
+import type {
+  FreeSemType,
+  GradesType,
+  AttendanceState,
+  VolunteerState,
+  AddPointState,
+} from "../../types/write/index";
 import {
-  defaultGrades,
-  type FreeSemType,
-  type GradesType,
-} from "../../types/write/grade/grade.type";
-import WriteAttendance from "../../components/write/writeAttendance";
-import type { AttendanceState } from "../../types/write/attendance/attendance.type";
-import WriteVolunteer from "../../components/write/writeVolunteer";
-import type { VolunteerState } from "../../types/write/volunteer/volunteer.type";
-import WriteAddPoint from "../../components/write/writeAddPoint";
-import type { AddPointState } from "../../types/write/addPoint/addPoint.type";
-import WriteGrade from "../../components/write/writeGrade";
-import { Header } from "../../components/common/Header";
-import { Footer } from "../../components/common/Footer";
+  WriteAttendance,
+  WriteVolunteer,
+  WriteAddPoint,
+  WriteGrade,
+  Header,
+  Footer,
+  // NavigateBar,
+} from "../../components/index";
 import { useNavigate } from "react-router-dom";
-// import NavigateBar from "../../components/common/NavigateBar";
 
 const WritePage = () => {
   const navigate = useNavigate();
@@ -53,7 +55,7 @@ const WritePage = () => {
   });
 
   const handleNext = () => {
-    navigate("/score", {
+    navigate("/result", {
       state: {
         // 순서대로 학기별 자율학기제 여부, 성적, 출결, 봉사시간, 가산점
         freeSem,
