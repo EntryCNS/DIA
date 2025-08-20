@@ -13,6 +13,7 @@ interface GradePropsType {
   setFreeSem: React.Dispatch<React.SetStateAction<FreeSemType>>;
   grades: GradesType;
   setGrades: React.Dispatch<React.SetStateAction<GradesType>>;
+  isStudent: boolean;
 }
 
 // 학기 키 매핑
@@ -39,6 +40,7 @@ const WriteGrade = ({
   setFreeSem,
   grades,
   setGrades,
+  isStudent,
 }: GradePropsType) => {
   const handleGradesCallback = (
     semesterIndex: number,
@@ -118,12 +120,16 @@ const WriteGrade = ({
         <tr>
           {freeSemMap.map((semKey, idx) => (
             <th key={semKey} className="white">
-              <ToggleButton
-                className={freeSem[semKey] ? "on" : "off"}
-                onClick={() => toggleFreeSem(idx)}
-              >
-                자유학기제
-              </ToggleButton>
+              {isStudent && semKey === "freeSem32" ? (
+                <div>자유학기제</div>
+              ) : (
+                <ToggleButton
+                  className={freeSem[semKey] ? "on" : "off"}
+                  onClick={() => toggleFreeSem(idx)}
+                >
+                  자유학기제
+                </ToggleButton>
+              )}
             </th>
           ))}
         </tr>
@@ -136,6 +142,7 @@ const WriteGrade = ({
             grades={grades[subject]}
             freeSem={freeSem}
             onChange={handleGradesCallback}
+            isStudent={isStudent}
           />
         ))}
       </tbody>

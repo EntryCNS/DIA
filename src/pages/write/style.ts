@@ -97,6 +97,23 @@ export const Table = styled.table`
       height: 54px;
       padding: 8px 4px;
 
+      div {
+        width: 85%;
+        height: 92%;
+        border-radius: 6px;
+        border: 1px solid #d8dae0;
+        color: #8b939cff;
+        background-color: #f2f3f5;
+        user-select: none;
+        font-family: "Pretendard", sans-serif;
+        font-weight: 400;
+        font-size: 12px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
       &:last-child {
         border-right: none;
       }

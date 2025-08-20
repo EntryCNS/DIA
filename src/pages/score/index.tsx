@@ -8,7 +8,6 @@ import {
   calcGradScore,
   calcBonusScore,
   calcVolunteerTimeScore,
-  calcAttendanceScore,
 } from "../../lib/index";
 import { formatScore } from "../../utils/formatScore";
 
@@ -37,8 +36,16 @@ const ScorePage = () => {
       console.error("studentType is not defined in state");
       return;
     }
-    
-    console.log("입려된 데이터 ",freeSem, grades, attendance, volunteerTime, addPoint, studentType)
+
+    console.log(
+      "입려된 데이터 ",
+      freeSem,
+      grades,
+      attendance,
+      volunteerTime,
+      addPoint,
+      studentType
+    );
 
     if (studentType == "gedStu") {
       const gedStuCalculatedScore = GedTaker({ scores: grades });

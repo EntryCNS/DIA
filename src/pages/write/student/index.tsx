@@ -1,26 +1,25 @@
 import { useState } from "react";
-import { Button } from "../../components/common/Button";
-import * as S from "./style";
-import { defaultGrades } from "../../types/write/grade/grade.type";
-import type {
-  FreeSemType,
-  GradesType,
-  AttendanceState,
-  VolunteerState,
-  AddPointState,
-} from "../../types/write/index";
-import {
-  WriteAttendance,
-  WriteVolunteer,
-  WriteAddPoint,
-  WriteGrade,
-  Header,
-  Footer,
-  // NavigateBar,
-} from "../../components/index";
+import * as S from "../style";
 import { useNavigate } from "react-router-dom";
+import {
+  Button,
+  Footer,
+  Header,
+  WriteAddPoint,
+  WriteAttendance,
+  WriteGrade,
+  WriteVolunteer,
+} from "../../../components";
+import {
+  defaultGrades,
+  type AddPointState,
+  type AttendanceState,
+  type FreeSemType,
+  type GradesType,
+  type VolunteerState,
+} from "../../../types/write";
 
-const WritePage = () => {
+const StudentWritePage = () => {
   const navigate = useNavigate();
 
   const [freeSem, setFreeSem] = useState<FreeSemType>({
@@ -64,7 +63,7 @@ const WritePage = () => {
         volunteerTime,
         addPoint,
         // 아직 세빈이가 start page 덜 만들어서 다 만든 후 studentType 관련 수정
-        studentType: "normalStu",
+        studentType: "student",
       },
     });
   };
@@ -94,6 +93,7 @@ const WritePage = () => {
                     setFreeSem={setFreeSem}
                     grades={grades}
                     setGrades={setGrades}
+                    isStudent={true}
                   />
                 </S.Table>
                 <S.Table>
@@ -124,4 +124,4 @@ const WritePage = () => {
   );
 };
 
-export default WritePage;
+export default StudentWritePage;
