@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./style";
 import { Button } from "../../components/common/Button";
-import RadioBox from "../../components/start";
+import RadioBox from "../../components/select";
 import { Header } from "../../components/common/Header";
 import { Footer } from "../../components/common/Footer";
 
-const Start = () => {
+const Select = () => {
   const [selectedValue, setSelectedValue] = useState<string>("");
   const navigate = useNavigate();
 
@@ -67,4 +67,4 @@ const Start = () => {
   );
 };
 
-export default Start;
+export default Select;
