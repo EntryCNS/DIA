@@ -6,15 +6,10 @@ import {
   type FreeSemType,
   type GradesType,
 } from "../../types/write/grade/grade.type";
-import WriteAttendance from "../../components/write/writeAttendance";
 import type { AttendanceState } from "../../types/write/attendance/attendance.type";
-import WriteVolunteer from "../../components/write/writeVolunteer";
 import type { VolunteerState } from "../../types/write/volunteer/volunteer.type";
-import WriteAddPoint from "../../components/write/writeAddPoint";
 import type { AddPointState } from "../../types/write/addPoint/addPoint.type";
-import WriteGrade from "../../components/write/writeGrade";
-import { Header } from "../../components/common/Header";
-import { Footer } from "../../components/common/Footer";
+import { WriteAttendance, WriteVolunteer, WriteAddPoint, WriteGrade, Header, Footer } from "../../components/index";
 import { useNavigate } from "react-router-dom";
 // import NavigateBar from "../../components/common/NavigateBar";
 

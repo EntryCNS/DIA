@@ -1,9 +1,7 @@
 import { useState } from "react";
 import * as S from "./style";
-import { Button } from "../../components/common/Button";
+import { Header, Footer, Button } from "../../components/index";
 import RadioBox from "../../components/select";
-import { Header } from "../../components/common/Header";
-import { Footer } from "../../components/common/Footer";
 
 const Select = () => {
   const [selectedValue, setSelectedValue] = useState<string>("");
