@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route} from "react-router-dom";
-// import Main from '../pages/main';
-import Start from "../pages/start";
+import Start from "../pages/select";
 import ScorePage from "../pages/score";
 import GedScorePage from "../pages/gedScore";
 import WritePage from "../pages/write";
@@ -9,11 +8,12 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<Main/>}/> */}
-        <Route path="/start" element={<Start/>}/>
-        <Route path="/score" element={<ScorePage />} />
+        <Route path="/" element={<Start/>}/>
+        <Route path="/select" element={<Start/>}/>
         <Route path="/gedScore" element={<GedScorePage />} />
-        <Route path="/write" element={<WritePage />} />
+        <Route path="/input/student" element={<WritePage />} />
+        <Route path="/input/graduated" element={<WritePage />} />
+        <Route path="/result" element={<ScorePage />} />
       </Routes>
     </BrowserRouter>
   );
