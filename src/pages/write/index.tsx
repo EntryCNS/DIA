@@ -1,17 +1,24 @@
 import { useState } from "react";
 import { Button } from "../../components/common/Button";
 import * as S from "./style";
+import { defaultGrades } from "../../types/write/grade/grade.type";
+import type {
+  FreeSemType,
+  GradesType,
+  AttendanceState,
+  VolunteerState,
+  AddPointState,
+} from "../../types/write/index";
 import {
-  defaultGrades,
-  type FreeSemType,
-  type GradesType,
-} from "../../types/write/grade/grade.type";
-import type { AttendanceState } from "../../types/write/attendance/attendance.type";
-import type { VolunteerState } from "../../types/write/volunteer/volunteer.type";
-import type { AddPointState } from "../../types/write/addPoint/addPoint.type";
-import { WriteAttendance, WriteVolunteer, WriteAddPoint, WriteGrade, Header, Footer } from "../../components/index";
+  WriteAttendance,
+  WriteVolunteer,
+  WriteAddPoint,
+  WriteGrade,
+  Header,
+  Footer,
+  // NavigateBar,
+} from "../../components/index";
 import { useNavigate } from "react-router-dom";
-// import NavigateBar from "../../components/common/NavigateBar";
 
 const WritePage = () => {
   const navigate = useNavigate();
