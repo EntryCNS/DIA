@@ -19,12 +19,12 @@ export const Title = styled.p`
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 30px;
-`
+`;
 
 export const Wrap = styled.div`
   display: flex;
   gap: 30px;
-`
+`;
 
 export const ContentWrap = styled.div`
   width: 500px;

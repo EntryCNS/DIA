@@ -9,15 +9,15 @@ const HeaderContainer = styled.header`
   align-items: center;
   padding: 20px 0 20px 140px;
   position: relative;
-  
+
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     height: 1px;
-    background-color: #E7E9ED;
+    background-color: #e7e9ed;
   }
 `;
 
@@ -29,7 +29,7 @@ const LogoImage = styled.img`
 export function Header() {
   return (
     <HeaderContainer>
-      <LogoImage src={defaultLogo}/>
+      <LogoImage src={defaultLogo} />
     </HeaderContainer>
   );
 }

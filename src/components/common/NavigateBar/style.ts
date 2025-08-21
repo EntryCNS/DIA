@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const NavigateContainer = styled.div`
   width: 100%;
@@ -8,11 +8,10 @@ export const NavigateContainer = styled.div`
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  
+
   @media (max-width: 768px) {
     padding: 40px 16px 60px 16px;
   }
-    
 `;
 
 export const StepsWrapper = styled.div`
@@ -41,12 +40,15 @@ export const StepCircle = styled.div<{ $isActive: boolean }>`
   margin-right: 8px;
   position: relative;
   z-index: 3;
-  
-  ${({ $isActive }) => $isActive ? `
+
+  ${({ $isActive }) =>
+    $isActive
+      ? `
     background-color: #2196F3;
     color: white;
     border-color: #2196F3;
-  ` : `
+  `
+      : `
     border: 1px solid #D8DAE0;
     color: #D8DAE0;
   `}
@@ -54,19 +56,19 @@ export const StepCircle = styled.div<{ $isActive: boolean }>`
 
 export const StepLabel = styled.span<{ $isActive: boolean }>`
   font-size: 14px;
-  font-weight: ${({ $isActive }) => ($isActive ? '600' : '400')};
-  color: ${({ $isActive }) => ($isActive ? '#000000' : '#666')};
+  font-weight: ${({ $isActive }) => ($isActive ? "600" : "400")};
+  color: ${({ $isActive }) => ($isActive ? "#000000" : "#666")};
   white-space: nowrap;
 `;
 
 export const StepLine = styled.div`
   width: 23px;
   height: 1px;
-  background-color: #D8DAE0;
+  background-color: #d8dae0;
   margin: 0 200px;
   position: relative;
   z-index: 1;
-  
+
   @media (max-width: 768px) {
     width: 40px;
     margin: 0 10px;

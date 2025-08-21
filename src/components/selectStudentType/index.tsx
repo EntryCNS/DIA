@@ -1,4 +1,4 @@
-import * as S from './style'
+import * as S from "./style";
 
 interface RadioProps {
   text: string;
@@ -12,10 +12,10 @@ const RadioBox = ({ text, value, selectedValue, onChange }: RadioProps) => {
     <>
       <S.Wrap as="label">
         <p>{text}</p>
-        <input 
-          type="radio" 
-          name="radio" 
-          value={value} 
+        <input
+          type="radio"
+          name="radio"
+          value={value}
           checked={selectedValue === value}
           onChange={() => onChange(value)}
         />
