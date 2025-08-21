@@ -8,7 +8,6 @@ import {
   calcGradScore,
   calcBonusScore,
   calcVolunteerTimeScore,
-  calcAttendanceScore,
 } from "../../lib/index";
 import { formatScore } from "../../utils/formatScore";
 
@@ -38,6 +37,16 @@ const ScorePage = () => {
       return;
     }
 
+    console.log(
+      "입려된 데이터 ",
+      freeSem,
+      grades,
+      attendance,
+      volunteerTime,
+      addPoint,
+      studentType
+    );
+
     if (studentType == "gedStu") {
       const gedStuCalculatedScore = GedTaker({ scores: grades });
       setSubjectScore(gedStuCalculatedScore);
@@ -49,7 +58,8 @@ const ScorePage = () => {
           ? normalCalculatedScore
           : normalCalculatedScore.score
       );
-      //가산점 계산
+      // setAttendanceScore();
+      // setVolunteerScore();
       const bonusScore = calcBonusScore(addPoint);
       setBonusScore(bonusScore);
       // 봉사 시간 점수 계산
@@ -66,15 +76,6 @@ const ScorePage = () => {
           ? GraduateCalculatedScore
           : GraduateCalculatedScore.score
       );
-      // 가산점 계산
-      const bonusScore = calcBonusScore(addPoint);
-      setBonusScore(bonusScore);
-      // 봉사 시간 점수 계산
-      const volunteerScore = calcVolunteerTimeScore(volunteerTime);
-      setVolunteerScore(volunteerScore);
-      // 출결 점수 계산
-      const attendanceScore = calcAttendanceScore(attendance);
-      setAttendanceScore(attendanceScore);
     }
   }, [freeSem, grades, attendance, volunteerTime, addPoint, studentType]);
 

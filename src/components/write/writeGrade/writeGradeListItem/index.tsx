@@ -15,6 +15,7 @@ interface WriteGradeListItemProps {
     value: Score,
     subject: keyof GradesType
   ) => void;
+  isStudent: boolean;
 }
 
 const WriteGradeListItem = ({
@@ -22,6 +23,7 @@ const WriteGradeListItem = ({
   grades,
   freeSem,
   onChange,
+  isStudent,
 }: WriteGradeListItemProps) => {
   const subjectName = {
     korean: "국어",
@@ -38,10 +40,11 @@ const WriteGradeListItem = ({
     <ListItemContainer>
       <td>{subjectName[subject]}</td>
       <td>
-        <div>
+        <Select $isDisabled={freeSem.freeSem11}>
           <select
             onChange={(e) => onChange(0, e.target.value as Score, subject)}
             value={grades.grade11}
+            disabled={freeSem.freeSem11}
           >
             <option value="NONE">-</option>
             <option value="A">A</option>
@@ -50,10 +53,10 @@ const WriteGradeListItem = ({
             <option value="D">D</option>
             <option value="E">E</option>
           </select>
-        </div>
+        </Select>
       </td>
       <td>
-        <div>
+        <Select $isDisabled={freeSem.freeSem12}>
           <select
             onChange={(e) => onChange(1, e.target.value as Score, subject)}
             value={grades.grade12}
@@ -66,10 +69,10 @@ const WriteGradeListItem = ({
             <option value="D">D</option>
             <option value="E">E</option>
           </select>
-        </div>
+        </Select>
       </td>
       <td>
-        <div>
+        <Select $isDisabled={freeSem.freeSem21}>
           <select
             onChange={(e) => onChange(2, e.target.value as Score, subject)}
             value={grades.grade21}
@@ -82,10 +85,10 @@ const WriteGradeListItem = ({
             <option value="D">D</option>
             <option value="E">E</option>
           </select>
-        </div>
+        </Select>
       </td>
       <td>
-        <div>
+        <Select $isDisabled={freeSem.freeSem22}>
           <select
             onChange={(e) => onChange(3, e.target.value as Score, subject)}
             value={grades.grade22}
@@ -98,10 +101,10 @@ const WriteGradeListItem = ({
             <option value="D">D</option>
             <option value="E">E</option>
           </select>
-        </div>
+        </Select>
       </td>
       <td>
-        <div>
+        <Select $isDisabled={freeSem.freeSem31}>
           <select
             onChange={(e) => onChange(4, e.target.value as Score, subject)}
             value={grades.grade31}
@@ -114,14 +117,14 @@ const WriteGradeListItem = ({
             <option value="D">D</option>
             <option value="E">E</option>
           </select>
-        </div>
+        </Select>
       </td>
       <td>
-        <div>
+        <Select $isDisabled={freeSem.freeSem32 || isStudent}>
           <select
             onChange={(e) => onChange(5, e.target.value as Score, subject)}
             value={grades.grade32}
-            disabled={freeSem.freeSem32}
+            disabled={freeSem.freeSem32 || isStudent}
           >
             <option value="NONE">-</option>
             <option value="A">A</option>
@@ -130,7 +133,7 @@ const WriteGradeListItem = ({
             <option value="D">D</option>
             <option value="E">E</option>
           </select>
-        </div>
+        </Select>
       </td>
       <td />
     </ListItemContainer>
@@ -144,26 +147,29 @@ const ListItemContainer = styled.tr`
     width: 13%;
     height: 3rem;
     text-align: center;
-    div {
-      padding-left: 1rem;
-      display: block;
-      margin: 0 auto;
-      width: 85%;
-      height: 92%;
-      padding-right: 8px;
-      border: 1px solid #c6c9d2;
-      border-radius: 6px;
-    }
+  }
+`;
 
-    div select {
-      width: 100%;
-      height: 100%;
-      border: none;
-      border-radius: 8px;
+const Select = styled.div<{ $isDisabled: boolean }>`
+  padding-left: 1rem;
+  display: block;
+  margin: 0 auto;
+  width: 85%;
+  height: 92%;
+  padding-right: 8px;
+  border: 1px solid #c6c9d2;
+  border-radius: 6px;
+  background-color: ${({ $isDisabled }) => ($isDisabled ? "#F2F3F5" : "none")};
+  select {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+    background-color: ${({ $isDisabled }) =>
+      $isDisabled ? "#F2F3F5" : "none"};
 
-      &:focus {
-        outline: none;
-      }
+    &:focus {
+      outline: none;
     }
   }
 `;
