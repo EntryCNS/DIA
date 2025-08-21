@@ -1,3 +1,3 @@
 export * from "./common";
-export * from "./select";
-export * from "./write";
+export * from "./selectStudentType";
+export * from "./inputScore";
