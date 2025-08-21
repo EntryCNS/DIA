@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import * as S from "./style";
 import { useLocation } from "react-router-dom";
-import { Button, Header, Footer /*, NavigateBar*/ } from "../../components";
+import { Button, Header, Footer, NavigateBar } from "../../components";
 import {
   GedTaker,
   calcPreGradScore,
@@ -92,7 +92,7 @@ const ScorePage = () => {
   return (
     <>
       <Header />
-      {/* <NavigateBar /> */}
+      <NavigateBar currentStep={3} />
       <S.Body>
         <S.Wrap>
           <S.Title>점수를 확인해 주세요</S.Title>

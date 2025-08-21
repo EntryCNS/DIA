@@ -1,6 +1,6 @@
 import { useState } from "react";
-import * as S from "../style";
 import { useNavigate } from "react-router-dom";
+import * as S from "../style";
 import {
   Button,
   Footer,
@@ -9,6 +9,7 @@ import {
   WriteAttendance,
   WriteGrade,
   WriteVolunteer,
+  NavigateBar,
 } from "../../../components";
 import {
   defaultGrades,
@@ -54,7 +55,7 @@ const StudentWritePage = () => {
   });
 
   const handleNext = () => {
-    navigate("/score", {
+    navigate("/result", {
       state: {
         // 순서대로 학기별 자율학기제 여부, 성적, 출결, 봉사시간, 가산점
         freeSem,
@@ -71,7 +72,7 @@ const StudentWritePage = () => {
   return (
     <>
       <Header />
-      {/* <NavigateBar /> */}
+      <NavigateBar currentStep={2} />
       <S.Body>
         <S.Wrap>
           <p>성적일람표를 작성해 주세요</p>
