@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./style";
 import { Header, Footer, Button, NavigateBar } from "../../components/index";
-import RadioBox from "../../components/select";
+import RadioBox from "../../components/selectStudentType";
 
 const Select = () => {
   const [selectedValue, setSelectedValue] = useState<string>("");
