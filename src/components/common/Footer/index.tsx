@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import defaultLogo from "../../../assets/DGSWLogo.svg";
+import githubLogo from "../../../assets/GitHubLogo.svg";
 
 const FooterContainer = styled.footer`
   width: 100%;
@@ -23,6 +24,7 @@ const FooterContainer = styled.footer`
   @media (max-width: 480px) {
     padding: 20px 20px;
   }
+    
 `;
 
 const LogoImage = styled.img`
@@ -33,6 +35,25 @@ const LogoImage = styled.img`
   @media (max-width: 768px) {
     height: 20px;
     margin-bottom: 12px;
+  }
+`;
+
+const GitHubLink = styled.a`
+  display: inline-block;
+  cursor: pointer;
+  
+  img {
+    height: 24px;
+    object-fit: contain;
+    transition: opacity 0.2s ease;
+    
+    &:hover {
+      opacity: 0.7;
+    }
+    
+    @media (max-width: 768px) {
+      height: 20px;
+    }
   }
 `;
 
@@ -70,6 +91,9 @@ export function Footer() {
       <FooterText>
         대구소프트웨어마이스터고등학교 동아리 CNS
       </FooterText>
+      <GitHubLink href="https://github.com/EntryCNS/DIA" target="_blank">
+        <img src={githubLogo}/>
+      </GitHubLink>
     </FooterContainer>
   );
 }

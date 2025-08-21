@@ -21,15 +21,26 @@ const HeaderContainer = styled.header`
   }
 `;
 
-const LogoImage = styled.img`
-  height: 23px;
-  object-fit: contain;
+const LogoLink = styled.a`
+  cursor: pointer;
+  
+  img {
+    height: 23px;
+    object-fit: contain;
+    transition: opacity 0.2s ease;
+    
+    &:hover {
+      opacity: 0.8;
+    }
+  }
 `;
 
 export function Header() {
   return (
     <HeaderContainer>
-      <LogoImage src={defaultLogo}/>
+      <LogoLink href="https://dgsw.dge.hs.kr/dgswh/main.do" target="_blank" rel="noopener noreferrer">
+        <img src={defaultLogo} alt="대구소프트웨어마이스터고등학교 로고"/>
+      </LogoLink>
     </HeaderContainer>
   );
 }
