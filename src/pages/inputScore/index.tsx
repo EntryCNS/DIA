@@ -63,8 +63,12 @@ const WritePage = () => {
         attendance,
         volunteerTime,
         addPoint,
+<<<<<<<< Updated upstream:src/pages/inputScore/index.tsx
         // 아직 세빈이가 start page 덜 만들어서 다 만든 후 studentType 관련 수정
         studentType: "normalStu",
+========
+        studentType: "student",
+>>>>>>>> Stashed changes:src/pages/inputScore/student/index.tsx
       },
     });
   };

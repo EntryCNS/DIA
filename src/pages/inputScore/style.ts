@@ -1,4 +1,3 @@
-// style.ts
 import styled from "styled-components";
 
 export const Body = styled.div`
@@ -6,12 +5,6 @@ export const Body = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #ffffff;
-  padding: 20px;
-
-  @media (max-width: 768px) {
-    padding: 16px;
-  }
 `;
 
 export const Wrap = styled.div`
@@ -51,8 +44,19 @@ export const Contents = styled.div`
 
 export const ScoreContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex: 1;
+`;
+
+export const ButtonsWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    gap: 12px;
+  }
 `;
 
 export const TableWrapper = styled.div`
@@ -60,6 +64,9 @@ export const TableWrapper = styled.div`
   border-radius: 8px;
   padding: 40px 35px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
 
   @media (max-width: 768px) {
     padding: 20px 16px;
@@ -73,8 +80,8 @@ export const Table = styled.table`
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid #d8dae0;
-  table-layout: fixed;
-  min-width: 640px;
+  table-layout: auto;
+  min-width: 652px;
 
   thead {
     background-color: #1485ee;
@@ -86,12 +93,21 @@ export const Table = styled.table`
       color: #fff;
       border-right: 1px solid #d8dae0;
       border-bottom: 1px solid #d8dae0;
-      width: 108px;
+      width: 92px;
       height: 54px;
       padding: 8px 4px;
 
       &:last-child {
         border-right: none;
+      }
+
+      &.gray {
+        background-color: #f9f9f9;
+        color: #424344;
+      }
+
+      &.white {
+        background-color: #fff;
       }
 
       @media (max-width: 768px) {
@@ -129,6 +145,18 @@ export const Table = styled.table`
         height: 48px;
         padding: 6px 2px;
       }
+
+      input {
+        width: 85%;
+        height: 90%;
+        border-radius: 6px;
+        border: 1px solid #c6c9d2;
+        text-align: center;
+
+        &:focus {
+          outline: none;
+        }
+      }
     }
 
     tr:last-child td {
@@ -137,38 +165,17 @@ export const Table = styled.table`
   }
 `;
 
-export const ButtonsWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    gap: 12px;
-  }
-`;
-
-
-export const ScoreInput = styled.input`
+export const DescriptionContainer = styled.div`
   width: 100%;
-  height: 36px;
-  border: 1px solid #d8dae0;
-  border-radius: 4px;
+  padding: 0 16px;
   background-color: #fff;
-  text-align: center;
+  border-radius: 8px;
+  color: #8b939c;
   font-family: "Pretendard", sans-serif;
+  font-weight: 400;
   font-size: 16px;
-  color: #424344;
-  outline: none;
 
-  &:focus {
-    border-color: #1485ee;
-    box-shadow: 0 0 0 2px rgba(20, 133, 238, 0.2);
-  }
-
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  ul {
+    margin: 16px;
   }
 `;

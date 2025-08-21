@@ -38,10 +38,14 @@ const ScorePage = () => {
       return;
     }
 
+<<<<<<< Updated upstream:src/pages/score/index.tsx
     if (studentType == "gedStu") {
+=======
+    if (studentType == "highSchoolEntranceExamTaker") {
+>>>>>>> Stashed changes:src/pages/result/index.tsx
       const gedStuCalculatedScore = GedTaker({ scores: grades });
       setSubjectScore(gedStuCalculatedScore);
-    } else if (studentType == "normalStu") {
+    } else if (studentType == "Student") {
       //졸업 예정자 성적 계산
       const normalCalculatedScore = calcPreGradScore(grades);
       setSubjectScore(
@@ -50,6 +54,26 @@ const ScorePage = () => {
           : normalCalculatedScore.score
       );
       //가산점 계산
+<<<<<<< Updated upstream:src/pages/score/index.tsx
+=======
+      const bonus = calcBonusScore(addPoint);
+      setBonusScore(bonus);
+      // 봉사 시간 점수 계산
+      const volunteer = calcVolunteerTimeScore(volunteerTime);
+      setVolunteerScore(volunteer);
+      // 출결 점수 계산
+      const attendanceScoreData = calcAttendanceScore(attendance);
+      setAttendanceScore(attendanceScoreData);
+    } else if (studentType === "graduated") {
+      // 졸업생 성적 계산
+      const GraduateCalculatedScore = calcGradScore(grades);
+      setSubjectScore(
+        typeof GraduateCalculatedScore === "number"
+          ? GraduateCalculatedScore
+          : GraduateCalculatedScore.score
+      );
+      // 가산점 계산
+>>>>>>> Stashed changes:src/pages/result/index.tsx
       const bonusScore = calcBonusScore(addPoint);
       setBonusScore(bonusScore);
       // 봉사 시간 점수 계산
@@ -58,6 +82,7 @@ const ScorePage = () => {
       // 출결 점수 계산
       const attendanceScore = calcAttendanceScore(attendance);
       setAttendanceScore(attendanceScore);
+<<<<<<< Updated upstream:src/pages/score/index.tsx
     } else if (studentType === "graduate") {
       // 졸업생 성적 계산
       const GraduateCalculatedScore = calcGradScore(grades);
@@ -75,6 +100,8 @@ const ScorePage = () => {
       // 출결 점수 계산
       const attendanceScore = calcAttendanceScore(attendance);
       setAttendanceScore(attendanceScore);
+=======
+>>>>>>> Stashed changes:src/pages/result/index.tsx
     }
   }, [freeSem, grades, attendance, volunteerTime, addPoint, studentType]);
 
