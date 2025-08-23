@@ -32,6 +32,25 @@ const StyledButton = styled.button<{ $variant: Variant }>`
   align-items: center;
   justify-content: center;
 
+  @media (max-width: 768px) {
+    width: 200px;
+    height: 52px;
+    font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+    max-width: 280px;
+    height: 48px;
+    font-size: 14px;
+    border-radius: 6px;
+  }
+
+  @media (max-width: 360px) {
+    height: 44px;
+    font-size: 13px;
+  }
+
   ${({ $variant }) => buttonStyles[$variant]}
 
   &:disabled {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./style";
-import { Button, Header, Footer, NavigateBar } from "../../components/index";
+import { Button, Header, Footer, NavigateBar } from "../../../components/index";
 
 const ScorePage = () => {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const ScorePage = () => {
 
   const handleNext = () => {
     navigate("/result", {
-      state: { grades, studentType: "gedStu" },
+      state: { grades, studentType: "highSchoolEntranceExamTaker" },
     });
   };
 
@@ -31,7 +31,7 @@ const ScorePage = () => {
       <Header />
       <S.Body>
         <S.Wrap>
-        <NavigateBar currentStep={2} />
+          <NavigateBar currentStep={2} />
           <S.Title>성적일람표를 작성해 주세요.</S.Title>
           <S.Contents>
             <S.ScoreContainer>

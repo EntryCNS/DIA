@@ -13,6 +13,7 @@ import {
   Button,
   Footer,
   Header,
+  NavigateBar,
   WriteAddPoint,
   WriteAttendance,
   WriteGrade,
@@ -62,7 +63,6 @@ const GraduatedWritePage = () => {
         attendance,
         volunteerTime,
         addPoint,
-        // 아직 세빈이가 start page 덜 만들어서 다 만든 후 studentType 관련 수정
         studentType: "graduated",
       },
     });
@@ -71,7 +71,7 @@ const GraduatedWritePage = () => {
   return (
     <>
       <Header />
-      {/* <NavigateBar /> */}
+      <NavigateBar currentStep={2} />
       <S.Body>
         <S.Wrap>
           <p>성적일람표를 작성해 주세요</p>

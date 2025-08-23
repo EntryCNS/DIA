@@ -9,15 +9,27 @@ const HeaderContainer = styled.header`
   align-items: center;
   padding: 20px 0 20px 140px;
   position: relative;
-  
+
+  @media (max-width: 1200px) {
+    padding: 18px 0 18px 80px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 16px 0 16px 40px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 14px 0 14px 20px;
+  }
+
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     height: 1px;
-    background-color: #E7E9ED;
+    background-color: #e7e9ed;
   }
 `;
 

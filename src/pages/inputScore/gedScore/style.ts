@@ -148,7 +148,6 @@ export const ButtonsWrap = styled.div`
   }
 `;
 
-
 export const ScoreInput = styled.input`
   width: 100%;
   height: 36px;

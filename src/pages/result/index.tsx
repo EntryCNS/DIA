@@ -8,6 +8,7 @@ import {
   calcGradScore,
   calcBonusScore,
   calcVolunteerTimeScore,
+  calcAttendanceScore,
 } from "../../lib/index";
 import { formatScore } from "../../utils/formatScore";
 
@@ -37,20 +38,11 @@ const ScorePage = () => {
       return;
     }
 
-    console.log(
-      "입려된 데이터 ",
-      freeSem,
-      grades,
-      attendance,
-      volunteerTime,
-      addPoint,
-      studentType
-    );
-
-    if (studentType == "gedStu") {
+    if (studentType == "highSchoolEntranceExamTaker") {
       const gedStuCalculatedScore = GedTaker({ scores: grades });
       setSubjectScore(gedStuCalculatedScore);
-    } else if (studentType == "normalStu") {
+      return;
+    } else if (studentType == "Student") {
       //졸업 예정자 성적 계산
       const normalCalculatedScore = calcPreGradScore(grades);
       setSubjectScore(
@@ -58,17 +50,7 @@ const ScorePage = () => {
           ? normalCalculatedScore
           : normalCalculatedScore.score
       );
-      // setAttendanceScore();
-      // setVolunteerScore();
-      const bonusScore = calcBonusScore(addPoint);
-      setBonusScore(bonusScore);
-      // 봉사 시간 점수 계산
-      const volunteerScore = calcVolunteerTimeScore(volunteerTime);
-      setVolunteerScore(volunteerScore);
-      // 출결 점수 계산
-      const attendanceScore = calcAttendanceScore(attendance);
-      setAttendanceScore(attendanceScore);
-    } else if (studentType === "graduate") {
+    } else if (studentType === "graduated") {
       // 졸업생 성적 계산
       const GraduateCalculatedScore = calcGradScore(grades);
       setSubjectScore(
@@ -77,6 +59,16 @@ const ScorePage = () => {
           : GraduateCalculatedScore.score
       );
     }
+
+    //가산점 계산
+    const bonusScore = calcBonusScore(addPoint);
+    setBonusScore(bonusScore);
+    // 봉사 시간 점수 계산
+    const volunteerScore = calcVolunteerTimeScore(volunteerTime);
+    setVolunteerScore(volunteerScore);
+    // 출결 점수 계산
+    const attendanceScore = calcAttendanceScore(attendance);
+    setAttendanceScore(attendanceScore);
   }, [freeSem, grades, attendance, volunteerTime, addPoint, studentType]);
 
   //총점 계산
