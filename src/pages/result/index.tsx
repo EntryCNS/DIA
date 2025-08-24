@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import * as S from "./style";
 import { useLocation } from "react-router-dom";
-import { Button, Header, Footer, NavigateBar } from "../../components";
 import {
   GedTaker,
   calcPreGradScore,

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./style";
-import { Button, Header, Footer, NavigateBar } from "../../../components/index";
 import Body from "../../../components/common/Body";
 
 const ScorePage = () => {
