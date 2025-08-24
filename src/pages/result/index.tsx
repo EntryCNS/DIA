@@ -11,6 +11,7 @@ import {
   calcAttendanceScore,
 } from "../../lib/index";
 import { formatScore } from "../../utils/formatScore";
+import Body from "../../components/common/Body";
 
 const ScorePage = () => {
   const [subjectScore, setSubjectScore] = useState(0);
@@ -18,6 +19,10 @@ const ScorePage = () => {
   const [volunteerScore, setVolunteerScore] = useState(0); //봉사점수
   const [bonusScore, setBonusScore] = useState(0); //가산점
   const [totalScore, setTotalScore] = useState(0); //총점
+
+  const handleNext = () => {
+    location.href = "https://dgsw.dge.hs.kr/dgswh/main.do";
+  };
 
   // 페이지에서 전달된 상태를 가져오기
   const { state } = useLocation();
@@ -82,53 +87,56 @@ const ScorePage = () => {
   }, [subjectScore, attendanceScore, volunteerScore, bonusScore]);
 
   return (
-    <>
-      <Header />
-      <NavigateBar currentStep={3} />
-      <S.Body>
-        <S.Wrap>
-          <S.Title>점수를 확인해 주세요</S.Title>
-          <S.Contents>
-            <S.ScoreContainer>
-              <S.TableWrapper>
-                <S.Table>
-                  <thead>
-                    <tr>
-                      <th>전형구분</th>
-                      <th>교과성적</th>
-                      <th>출결상황</th>
-                      <th>봉사활동</th>
-                      <th>가산점</th>
-                      <th>총점</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="check-title">점수확인</td>
-                      <td>{formatScore(subjectScore)}</td>
-                      <td>{formatScore(attendanceScore)}</td>
-                      <td>{formatScore(volunteerScore)}</td>
-                      <td>{formatScore(bonusScore)}</td>
-                      <td>{formatScore(totalScore)}</td>
-                    </tr>
-                  </tbody>
-                </S.Table>
-              </S.TableWrapper>
-            </S.ScoreContainer>
+    <Body currentStep={3} text="점수를 확인해 주세요" handleNext={handleNext}>
+      <S.Table>
+        <thead>
+          <tr>
+            <th>전형구분</th>
+            <th>교과성적</th>
+            <th>출결상황</th>
+            <th>봉사활동</th>
+            <th>가산점</th>
+            <th>총점</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td className="check-title">점수확인</td>
+            <td>{formatScore(subjectScore)}</td>
+            <td>{formatScore(attendanceScore)}</td>
+            <td>{formatScore(volunteerScore)}</td>
+            <td>{formatScore(bonusScore)}</td>
+            <td>{formatScore(totalScore)}</td>
+          </tr>
+        </tbody>
+      </S.Table>
+    </Body>
+    // <>
+    //   <Header />
+    //   <NavigateBar currentStep={3} />
+    //   <S.Body>
+    //     <S.Wrap>
+    //       <S.Title>점수를 확인해 주세요</S.Title>
+    //       <S.Contents>
+    //         <S.ScoreContainer>
+    //           <S.TableWrapper>
 
-            <S.ButtonsWrap>
-              <Button
-                text="홈페이지로 이동하기"
-                href="https://dgsw.dge.hs.kr/dgswh/main.do"
-                variant="primary"
-              />
-              <Button text="이전" variant="gray" />
-            </S.ButtonsWrap>
-          </S.Contents>
-        </S.Wrap>
-      </S.Body>
-      <Footer />
-    </>
+    //           </S.TableWrapper>
+    //         </S.ScoreContainer>
+
+    //         <S.ButtonsWrap>
+    //           <Button
+    //             text="홈페이지로 이동하기"
+    //             href="https://dgsw.dge.hs.kr/dgswh/main.do"
+    //             variant="primary"
+    //           />
+    //           <Button text="이전" variant="gray" />
+    //         </S.ButtonsWrap>
+    //       </S.Contents>
+    //     </S.Wrap>
+    //   </S.Body>
+    //   <Footer />
+    // </>
   );
 };
 
