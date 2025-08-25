@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const NavigateContainer = styled.div`
   width: 100%;
-  padding: 60px 20px 82px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,7 +24,7 @@ export const NavigateContainer = styled.div`
 export const StepsWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
   flex-wrap: nowrap;
   gap: 0;
@@ -122,29 +121,6 @@ export const StepLine = styled.div`
   background-color: #d8dae0;
   position: relative;
   z-index: 1;
-  flex: 1;
-  min-width: 20px;
-  max-width: 200px;
+  width: 23px;
   margin: 0 20px;
-
-  @media (max-width: 1200px) {
-    max-width: 150px;
-    margin: 0 15px;
-  }
-
-  @media (max-width: 1024px) {
-    max-width: 100px;
-    margin: 0 10px;
-  }
-
-  @media (max-width: 768px) {
-    max-width: 60px;
-    margin: 0 8px;
-  }
-
-  @media (max-width: 480px) {
-    max-width: 30px;
-    margin: 0 5px;
-    min-width: 15px;
-  }
 `;
