@@ -110,32 +110,6 @@ const ScorePage = () => {
         </tbody>
       </S.Table>
     </Body>
-    // <>
-    //   <Header />
-    //   <NavigateBar currentStep={3} />
-    //   <S.Body>
-    //     <S.Wrap>
-    //       <S.Title>점수를 확인해 주세요</S.Title>
-    //       <S.Contents>
-    //         <S.ScoreContainer>
-    //           <S.TableWrapper>
-
-    //           </S.TableWrapper>
-    //         </S.ScoreContainer>
-
-    //         <S.ButtonsWrap>
-    //           <Button
-    //             text="홈페이지로 이동하기"
-    //             href="https://dgsw.dge.hs.kr/dgswh/main.do"
-    //             variant="primary"
-    //           />
-    //           <Button text="이전" variant="gray" />
-    //         </S.ButtonsWrap>
-    //       </S.Contents>
-    //     </S.Wrap>
-    //   </S.Body>
-    //   <Footer />
-    // </>
   );
 };
 

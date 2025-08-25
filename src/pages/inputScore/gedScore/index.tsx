@@ -89,28 +89,6 @@ const ScorePage = () => {
         </tbody>
       </S.Table>
     </Body>
-    // <>
-    //   <Header />
-    //   <S.Body>
-    //     <S.Wrap>
-    //       <NavigateBar currentStep={2} />
-    //       <S.Title>성적일람표를 작성해 주세요.</S.Title>
-    //       <S.Contents>
-    //         <S.ScoreContainer>
-    //           <S.TableWrapper>
-
-    //           </S.TableWrapper>
-    //         </S.ScoreContainer>
-
-    //         <S.ButtonsWrap>
-    //           <Button text="다음" variant="primary" onClick={handleNext} />
-    //           <Button text="이전" variant="gray" />
-    //         </S.ButtonsWrap>
-    //       </S.Contents>
-    //     </S.Wrap>
-    //   </S.Body>
-    //   <Footer />
-    // </>
   );
 };
 

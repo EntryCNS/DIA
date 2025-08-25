@@ -49,23 +49,6 @@ const Select = () => {
         />
       </S.RadioWrap>
     </Body>
-    // <S.PageContainer>
-    //   <Header />
-    //   <NavigateBar currentStep={1} />
-    //   <S.MainContent>
-    //     <S.Title>학력을 입력해주세요.</S.Title>
-    //     <S.Wrap>
-    //       <S.ContentWrap>
-
-    //       </S.ContentWrap>
-    //       <S.ButtonWrap>
-    //         <Button text="다음" onClick={handleNext} />
-    //         <Button text="이전" variant="gray" />
-    //       </S.ButtonWrap>
-    //     </S.Wrap>
-    //   </S.MainContent>
-    //   <Footer />
-    // </S.PageContainer>
   );
 };
 

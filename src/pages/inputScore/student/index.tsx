@@ -54,41 +54,17 @@ const StudentWritePage = () => {
   const handleNext = () => {
     navigate("/result", {
       state: {
-        // 순서대로 학기별 자율학기제 여부, 성적, 출결, 봉사시간, 가산점
         freeSem,
         grades,
         attendance,
         volunteerTime,
         addPoint,
-        // 아직 세빈이가 start page 덜 만들어서 다 만든 후 studentType 관련 수정
         studentType: "student",
       },
     });
   };
 
   return (
-    // <>
-    //   <Header />
-    //   <NavigateBar currentStep={2} />
-    //   <S.Body>
-    //     <S.Wrap>
-    //       <p>성적일람표를 작성해 주세요</p>
-    //       <S.Contents>
-    //         <S.ScoreContainer>
-    //           <S.TableWrapper>
-
-    //           </S.TableWrapper>
-    //         </S.ScoreContainer>
-
-    //         <S.ButtonsWrap>
-    //           <Button text="다음" variant="primary" onClick={handleNext} />
-    //           <Button text="이전" variant="gray" />
-    //         </S.ButtonsWrap>
-    //       </S.Contents>
-    //     </S.Wrap>
-    //   </S.Body>
-    //   <Footer />
-    // </>
     <Body
       currentStep={2}
       text="성적일람표를 작성해 주세요"
