@@ -46,8 +46,9 @@ const ScorePage = () => {
       const gedStuCalculatedScore = GedTaker({ scores: grades });
       setSubjectScore(gedStuCalculatedScore);
       return;
-    } else if (studentType == "Student") {
+    } else if (studentType == "student") {
       //졸업 예정자 성적 계산
+      console.log(grades);
       const normalCalculatedScore = calcPreGradScore(grades);
       setSubjectScore(
         typeof normalCalculatedScore === "number"
