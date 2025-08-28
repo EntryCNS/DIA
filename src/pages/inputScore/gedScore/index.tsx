@@ -21,6 +21,13 @@ const ScorePage = () => {
   };
 
   const handleNext = () => {
+    const allScoresEntered = Object.values(grades).every(score => score !== "0" && score !== "");
+    
+    if (!allScoresEntered) {
+      alert("점수를 모두 입력해주세요.");
+      return;
+    }
+    
     navigate("/result", {
       state: { grades, studentType: "highSchoolEntranceExamTaker" },
     });
