@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import * as S from "../style";
 import { useNavigate } from "react-router-dom";
 import {
@@ -51,30 +51,8 @@ const GraduatedWritePage = () => {
     modelAward: "0",
   });
 
-  const isAllFieldsFilled = useMemo(() => {
-    const hasValidGrades = Object.values(grades).every((subject) => {
-      const gradeValues = Object.values(subject);
-      return gradeValues.some((grade) => grade !== "NONE");
-    });
-
-    const hasValidAttendance = Object.values(attendance).every((grade) =>
-      Object.values(grade).every((value) => value !== "")
-    );
-
-    const hasValidVolunteer = Object.values(volunteerTime).every(
-      (time) => time !== "" && time !== "0"
-    );
-
-    return hasValidGrades && hasValidAttendance && hasValidVolunteer;
-  }, [grades, attendance, volunteerTime]);
-
   const handleNext = () => {
-    if (!isAllFieldsFilled) {
-      alert("점수를 모두 입력해주세요.");
-      return;
-    }
-    
-    navigate("/score", {
+    navigate("/result", {
       state: {
         // 순서대로 학기별 자율학기제 여부, 성적, 출결, 봉사시간, 가산점
         freeSem,

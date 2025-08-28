@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "../style";
 import {
@@ -51,29 +51,7 @@ const StudentWritePage = () => {
     modelAward: "0",
   });
 
-  const isAllFieldsFilled = useMemo(() => {
-    const hasValidGrades = Object.values(grades).every((subject) => {
-      const gradeValues = Object.values(subject);
-      return gradeValues.some((grade) => grade !== "NONE");
-    });
-
-    const hasValidAttendance = Object.values(attendance).every((grade) =>
-      Object.values(grade).every((value) => value !== "")
-    );
-
-    const hasValidVolunteer = Object.values(volunteerTime).every(
-      (time) => time !== "" && time !== "0"
-    );
-
-    return hasValidGrades && hasValidAttendance && hasValidVolunteer;
-  }, [grades, attendance, volunteerTime]);
-
   const handleNext = () => {
-    if (!isAllFieldsFilled) {
-      alert("점수를 모두 입력해주세요.");
-      return;
-    }
-    
     navigate("/result", {
       state: {
         freeSem,
