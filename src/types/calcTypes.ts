@@ -10,12 +10,12 @@ export type SemesterKey =
 
 export type SubjectKey =
   | "korean"
-  | "society"
+  | "socialStudies"
   | "history"
-  | "morality"
-  | "math"
+  | "ethics"
+  | "mathematics"
   | "science"
-  | "cs"
+  | "informatics"
   | "english";
 
 export type Input = Record<SubjectKey, Record<SemesterKey, Grade>>;

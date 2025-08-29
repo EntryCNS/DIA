@@ -27,12 +27,12 @@ const WriteGradeListItem = ({
 }: WriteGradeListItemProps) => {
   const subjectName = {
     korean: "국어",
-    society: "사회",
+    socialStudies: "사회",
     history: "역사",
-    morality: "도덕",
-    math: "수학",
+    ethics: "도덕",
+    mathematics: "수학",
     science: "과학",
-    cs: "정보",
+    informatics: "정보",
     english: "영어",
   };
 

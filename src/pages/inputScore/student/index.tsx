@@ -30,9 +30,9 @@ const StudentWritePage = () => {
   });
   const [grades, setGrades] = useState<GradesType>(defaultGrades);
   const [attendance, setAttendance] = useState<AttendanceState>({
-    grade1: { absence: "0", late: "0", earlyLeave: "0", tardy: "0" },
-    grade2: { absence: "0", late: "0", earlyLeave: "0", tardy: "0" },
-    grade3: { absence: "0", late: "0", earlyLeave: "0", tardy: "0" },
+    grade1: { absence: "0", tardiness: "0", earlyDeparture: "0", partialAttendance: "0" },
+    grade2: { absence: "0", tardiness: "0", earlyDeparture: "0", partialAttendance: "0" },
+    grade3: { absence: "0", tardiness: "0", earlyDeparture: "0", partialAttendance: "0" },
   });
   const [volunteerTime, setVolunteerTime] = useState<VolunteerState>({
     grade1: "0",
