@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, Dispatch, SetStateAction } from "react";
+import React, { createContext, useContext, useState, type Dispatch, type SetStateAction } from "react";
 import {
   defaultGrades,
   type AddPointState,
