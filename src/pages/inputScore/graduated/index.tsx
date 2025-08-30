@@ -1,14 +1,5 @@
-import { useState } from "react";
 import * as S from "../style";
 import { useNavigate } from "react-router-dom";
-import {
-  defaultGrades,
-  type AddPointState,
-  type AttendanceState,
-  type FreeSemType,
-  type GradesType,
-  type VolunteerState,
-} from "../../../types/write";
 import {
   WriteAddPoint,
   WriteAttendance,
@@ -16,40 +7,20 @@ import {
   WriteVolunteer,
 } from "../../../components";
 import Body from "../../../components/common/Body";
+import { useFormContext } from "../../../contexts/FormContext";
 
 const GraduatedWritePage = () => {
   const navigate = useNavigate();
-
-  const [freeSem, setFreeSem] = useState<FreeSemType>({
-    freeSem11: false,
-    freeSem12: false,
-    freeSem21: false,
-    freeSem22: false,
-    freeSem31: false,
-    freeSem32: false,
-  });
-  const [grades, setGrades] = useState<GradesType>(defaultGrades);
-  const [attendance, setAttendance] = useState<AttendanceState>({
-    grade1: { absence: "0", late: "0", earlyLeave: "0", tardy: "0" },
-    grade2: { absence: "0", late: "0", earlyLeave: "0", tardy: "0" },
-    grade3: { absence: "0", late: "0", earlyLeave: "0", tardy: "0" },
-  });
-  const [volunteerTime, setVolunteerTime] = useState<VolunteerState>({
-    grade1: "0",
-    grade2: "0",
-    grade3: "0",
-  });
-  const [addPoint, setAddPoint] = useState<AddPointState>({
-    leaderShip: {
-      leader11: false,
-      leader12: false,
-      leader21: false,
-      leader22: false,
-      leader31: false,
-      leader32: false,
-    },
-    modelAward: "0",
-  });
+  const { 
+    graduatedForm, 
+    setGraduatedFreeSem,
+    setGraduatedGrades,
+    setGraduatedAttendance,
+    setGraduatedVolunteerTime,
+    setGraduatedAddPoint
+  } = useFormContext();
+  
+  const { freeSem, grades, attendance, volunteerTime, addPoint } = graduatedForm;
 
   const handleNext = () => {
     navigate("/result", {
@@ -65,11 +36,16 @@ const GraduatedWritePage = () => {
     });
   };
 
+  const handlePrev = () => {
+    navigate("/select");
+  };
+
   return (
     <Body
       currentStep={2}
       text="성적일람표를 작성해 주세요"
       handleNext={handleNext}
+      handlePrev={handlePrev}
     >
       <S.DescriptionContainer>
         <ul>
@@ -83,25 +59,25 @@ const GraduatedWritePage = () => {
       <S.Table>
         <WriteGrade
           freeSem={freeSem}
-          setFreeSem={setFreeSem}
+          setFreeSem={setGraduatedFreeSem}
           grades={grades}
-          setGrades={setGrades}
+          setGrades={setGraduatedGrades}
           isStudent={false}
         />
       </S.Table>
       <S.Table>
         <WriteAttendance
           attendance={attendance}
-          setAttendance={setAttendance}
+          setAttendance={setGraduatedAttendance}
         />
       </S.Table>
       <S.Table>
         <WriteVolunteer
           volunteer={volunteerTime}
-          setVolunteer={setVolunteerTime}
+          setVolunteer={setGraduatedVolunteerTime}
         />
       </S.Table>
-      <WriteAddPoint addPoint={addPoint} setAddPoint={setAddPoint} />
+      <WriteAddPoint addPoint={addPoint} setAddPoint={setGraduatedAddPoint} />
     </Body>
   );
 };
