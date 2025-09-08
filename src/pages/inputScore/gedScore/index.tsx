@@ -8,10 +8,10 @@ const ScorePage = () => {
   const [grades, setGrades] = useState({
     korean: "0",
     english: "0",
-    math: "0",
-    society: "0",
+    mathematics: "0",
+    socialStudies: "0",
     science: "0",
-    elective: "0",
+    electiveSubject: "0",
   });
 
   const handleChange = (subject: string, value: string) => {
@@ -67,15 +67,15 @@ const ScorePage = () => {
             <td>
               <S.ScoreInput
                 type="number"
-                value={grades.math}
-                onChange={(e) => handleChange("math", e.target.value)}
+                value={grades.mathematics}
+                onChange={(e) => handleChange("mathematics", e.target.value)}
               />
             </td>
             <td>
               <S.ScoreInput
                 type="number"
-                value={grades.society}
-                onChange={(e) => handleChange("society", e.target.value)}
+                value={grades.socialStudies}
+                onChange={(e) => handleChange("socialStudies", e.target.value)}
               />
             </td>
             <td>
@@ -88,8 +88,8 @@ const ScorePage = () => {
             <td>
               <S.ScoreInput
                 type="number"
-                value={grades.elective}
-                onChange={(e) => handleChange("elective", e.target.value)}
+                value={grades.electiveSubject}
+                onChange={(e) => handleChange("electiveSubject", e.target.value)}
               />
             </td>
           </tr>

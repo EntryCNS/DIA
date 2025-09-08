@@ -10,15 +10,15 @@ const gradePoint: Record<Exclude<Grade, "P" | "NONE">, number> = {
   E: 1,
 };
 
-// 과목 가중: 수학·과학·정보(=cs) 2배, 그 외 1배
+// 과목 가중: 수학·과학·정보(=informatics) 2배, 그 외 1배
 const subjectWeight: Record<SubjectKey, number> = {
   korean: 1,
-  society: 1,
+  socialStudies: 1,
   history: 1,
-  morality: 1,
-  math: 2,
+  ethics: 1,
+  mathematics: 2,
   science: 2,
-  cs: 2,
+  informatics: 2,
   english: 1,
 };
 
