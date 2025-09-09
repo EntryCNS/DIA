@@ -33,16 +33,17 @@ const HeaderContainer = styled.header`
   }
 `;
 
-const LogoImage = styled.img`
-  height: 23px;
-  object-fit: contain;
+const LogoLink = styled.a`
+  cursor: pointer;
 
-  @media (max-width: 768px) {
-    height: 20px;
-  }
+  img {
+    height: 23px;
+    object-fit: contain;
+    transition: opacity 0.2s ease;
 
-  @media (max-width: 480px) {
-    height: 18px;
+    &:hover {
+      opacity: 0.8;
+    }
   }
 `;
 
