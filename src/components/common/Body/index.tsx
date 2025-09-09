@@ -9,11 +9,10 @@ interface BodyProps {
   children: React.ReactNode;
   currentStep: number;
   handleNext: () => void;
-  handlePrev?: () => void;
   text: string;
 }
 
-const Body = ({ children, currentStep, text, handleNext, handlePrev }: BodyProps) => {
+const Body = ({ children, currentStep, text, handleNext }: BodyProps) => {
   return (
     <PageWrapper>
       <Header />
@@ -26,7 +25,7 @@ const Body = ({ children, currentStep, text, handleNext, handlePrev }: BodyProps
             <ContentContainer>{children}</ContentContainer>
             <ButtonWrapper>
               <Button text="다음" variant="primary" onClick={handleNext} />
-              {handlePrev && <Button text="이전" variant="gray" onClick={handlePrev} />}
+              <Button text="이전" variant="gray" />
             </ButtonWrapper>
           </ContentWrapper>
         </Wrap>
