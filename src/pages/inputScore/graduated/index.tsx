@@ -1,5 +1,14 @@
+import { useState } from "react";
 import * as S from "../style";
 import { useNavigate } from "react-router-dom";
+import {
+  defaultGrades,
+  type AddPointState,
+  type AttendanceState,
+  type FreeSemType,
+  type GradesType,
+  type VolunteerState,
+} from "../../../types/write";
 import {
   WriteAddPoint,
   WriteAttendance,
@@ -7,10 +16,10 @@ import {
   WriteVolunteer,
 } from "../../../components";
 import Body from "../../../components/common/Body";
-import { useFormContext } from "../../../contexts/FormContext";
 
 const GraduatedWritePage = () => {
   const navigate = useNavigate();
+
   const [freeSem, setFreeSem] = useState<FreeSemType>({
     freeSem11: false,
     freeSem12: false,
@@ -56,16 +65,11 @@ const GraduatedWritePage = () => {
     });
   };
 
-  const handlePrev = () => {
-    navigate("/select");
-  };
-
   return (
     <Body
       currentStep={2}
       text="성적일람표를 작성해 주세요"
       handleNext={handleNext}
-      handlePrev={handlePrev}
     >
       <S.DescriptionContainer>
         <ul>
@@ -79,25 +83,25 @@ const GraduatedWritePage = () => {
       <S.Table>
         <WriteGrade
           freeSem={freeSem}
-          setFreeSem={setGraduatedFreeSem}
+          setFreeSem={setFreeSem}
           grades={grades}
-          setGrades={setGraduatedGrades}
+          setGrades={setGrades}
           isStudent={false}
         />
       </S.Table>
       <S.Table>
         <WriteAttendance
           attendance={attendance}
-          setAttendance={setGraduatedAttendance}
+          setAttendance={setAttendance}
         />
       </S.Table>
       <S.Table>
         <WriteVolunteer
           volunteer={volunteerTime}
-          setVolunteer={setGraduatedVolunteerTime}
+          setVolunteer={setVolunteerTime}
         />
       </S.Table>
-      <WriteAddPoint addPoint={addPoint} setAddPoint={setGraduatedAddPoint} />
+      <WriteAddPoint addPoint={addPoint} setAddPoint={setAddPoint} />
     </Body>
   );
 };
