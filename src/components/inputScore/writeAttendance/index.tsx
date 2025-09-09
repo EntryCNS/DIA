@@ -74,27 +74,27 @@ const WriteAttendance = ({
             <td colSpan={2}>
               <input
                 type="text"
-                value={attendance[key].late}
-                onChange={(e) => handleChange(key, "late", e.target.value)}
-                onBlur={() => handleBlur(key, "late")}
+                value={attendance[key].tardiness}
+                onChange={(e) => handleChange(key, "tardiness", e.target.value)}
+                onBlur={() => handleBlur(key, "tardiness")}
               />
             </td>
             <td colSpan={2}>
               <input
                 type="text"
-                value={attendance[key].earlyLeave}
+                value={attendance[key].earlyDeparture}
                 onChange={(e) =>
-                  handleChange(key, "earlyLeave", e.target.value)
+                  handleChange(key, "earlyDeparture", e.target.value)
                 }
-                onBlur={() => handleBlur(key, "earlyLeave")}
+                onBlur={() => handleBlur(key, "earlyDeparture")}
               />
             </td>
             <td colSpan={2}>
               <input
                 type="text"
-                value={attendance[key].tardy}
-                onChange={(e) => handleChange(key, "tardy", e.target.value)}
-                onBlur={() => handleBlur(key, "tardy")}
+                value={attendance[key].partialAttendance}
+                onChange={(e) => handleChange(key, "partialAttendance", e.target.value)}
+                onBlur={() => handleBlur(key, "partialAttendance")}
               />
             </td>
           </tr>

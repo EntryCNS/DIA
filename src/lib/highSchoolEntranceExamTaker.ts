@@ -3,10 +3,10 @@
 type ScoreProps = {
   korean: string;
   english: string;
-  math: string;
-  society: string;
+  mathematics: string;
+  socialStudies: string;
   science: string;
-  elective: string;
+  electiveSubject: string;
   [key: string]: string;
 };
 

@@ -20,14 +20,14 @@ export interface GradeType {
 
 export interface GradesType {
   korean: GradeType;
-  society: GradeType;
+  socialStudies: GradeType;
   history: GradeType;
   //도덕
-  morality: GradeType;
-  math: GradeType;
+  ethics: GradeType;
+  mathematics: GradeType;
   science: GradeType;
   //정보
-  cs: GradeType;
+  informatics: GradeType;
   english: GradeType;
 }
 
@@ -41,11 +41,11 @@ export const defaultGrade: GradeType = {
 };
 export const defaultGrades: GradesType = {
   korean: { ...defaultGrade },
-  society: { ...defaultGrade },
+  socialStudies: { ...defaultGrade },
   history: { ...defaultGrade },
-  morality: { ...defaultGrade },
-  math: { ...defaultGrade },
+  ethics: { ...defaultGrade },
+  mathematics: { ...defaultGrade },
   science: { ...defaultGrade },
-  cs: { ...defaultGrade },
+  informatics: { ...defaultGrade },
   english: { ...defaultGrade },
 };

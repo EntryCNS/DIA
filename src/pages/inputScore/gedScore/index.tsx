@@ -1,123 +1,93 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./style";
-import { Button, Header, Footer, NavigateBar } from "../../../components/index";
+import Body from "../../../components/common/Body";
+import { useScore } from "../../../contexts/ScoreContext";
 
 const ScorePage = () => {
   const navigate = useNavigate();
-  const [grades, setGrades] = useState({
-    korean: "0",
-    english: "0",
-    math: "0",
-    society: "0",
-    science: "0",
-    elective: "0",
-  });
+  const { gedGrades, setGedGrades, setStudentType } = useScore();
 
   const handleChange = (subject: string, value: string) => {
     if (/^\d*$/.test(value)) {
-      setGrades((prev) => ({ ...prev, [subject]: value }));
+      setGedGrades((prev) => ({ ...prev, [subject]: value }));
     }
   };
 
   const handleNext = () => {
-    navigate("/result", {
-      state: { grades, studentType: "highSchoolEntranceExamTaker" },
-    });
+    const allScoresEntered = Object.values(gedGrades).every(score => score !== "0" && score !== "");
+    
+    if (!allScoresEntered) {
+      alert("점수를 모두 입력해주세요.");
+      return;
+    }
+    
+    setStudentType("highSchoolEntranceExamTaker");
+    navigate("/result");
   };
 
   return (
-    <>
-      <Header />
-      <S.Body>
-        <S.Wrap>
-          <NavigateBar currentStep={2} />
-          <S.Title>성적일람표를 작성해 주세요.</S.Title>
-          <S.Contents>
-            <S.ScoreContainer>
-              <S.TableWrapper>
-                <S.Table>
-                  <thead>
-                    <tr>
-                      <th>과목</th>
-                      <th>국어</th>
-                      <th>영어</th>
-                      <th>수학</th>
-                      <th>사회</th>
-                      <th>과학</th>
-                      <th>선택과목</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="check-title">점수</td>
-                      <td>
-                        <S.ScoreInput
-                          type="number"
-                          value={grades.korean}
-                          onChange={(e) =>
-                            handleChange("korean", e.target.value)
-                          }
-                        />
-                      </td>
-                      <td>
-                        <S.ScoreInput
-                          type="number"
-                          value={grades.english}
-                          onChange={(e) =>
-                            handleChange("english", e.target.value)
-                          }
-                        />
-                      </td>
-                      <td>
-                        <S.ScoreInput
-                          type="number"
-                          value={grades.math}
-                          onChange={(e) => handleChange("math", e.target.value)}
-                        />
-                      </td>
-                      <td>
-                        <S.ScoreInput
-                          type="number"
-                          value={grades.society}
-                          onChange={(e) =>
-                            handleChange("society", e.target.value)
-                          }
-                        />
-                      </td>
-                      <td>
-                        <S.ScoreInput
-                          type="number"
-                          value={grades.science}
-                          onChange={(e) =>
-                            handleChange("science", e.target.value)
-                          }
-                        />
-                      </td>
-                      <td>
-                        <S.ScoreInput
-                          type="number"
-                          value={grades.elective}
-                          onChange={(e) =>
-                            handleChange("elective", e.target.value)
-                          }
-                        />
-                      </td>
-                    </tr>
-                  </tbody>
-                </S.Table>
-              </S.TableWrapper>
-            </S.ScoreContainer>
-
-            <S.ButtonsWrap>
-              <Button text="다음" variant="primary" onClick={handleNext} />
-              <Button text="이전" variant="gray" />
-            </S.ButtonsWrap>
-          </S.Contents>
-        </S.Wrap>
-      </S.Body>
-      <Footer />
-    </>
+    <Body currentStep={2} text="점수를 확인해 주세요" handleNext={handleNext}>
+      <S.Table>
+        <thead>
+          <tr>
+            <th>과목</th>
+            <th>국어</th>
+            <th>영어</th>
+            <th>수학</th>
+            <th>사회</th>
+            <th>과학</th>
+            <th>선택과목</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td className="check-title">점수</td>
+            <td>
+              <S.ScoreInput
+                type="number"
+                value={gedGrades.korean}
+                onChange={(e) => handleChange("korean", e.target.value)}
+              />
+            </td>
+            <td>
+              <S.ScoreInput
+                type="number"
+                value={gedGrades.english}
+                onChange={(e) => handleChange("english", e.target.value)}
+              />
+            </td>
+            <td>
+              <S.ScoreInput
+                type="number"
+                value={gedGrades.mathematics}
+                onChange={(e) => handleChange("mathematics", e.target.value)}
+              />
+            </td>
+            <td>
+              <S.ScoreInput
+                type="number"
+                value={gedGrades.socialStudies}
+                onChange={(e) => handleChange("socialStudies", e.target.value)}
+              />
+            </td>
+            <td>
+              <S.ScoreInput
+                type="number"
+                value={gedGrades.science}
+                onChange={(e) => handleChange("science", e.target.value)}
+              />
+            </td>
+            <td>
+              <S.ScoreInput
+                type="number"
+                value={gedGrades.electiveSubject}
+                onChange={(e) => handleChange("electiveSubject", e.target.value)}
+              />
+            </td>
+          </tr>
+        </tbody>
+      </S.Table>
+    </Body>
   );
 };
 
