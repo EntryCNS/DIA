@@ -1,7 +1,12 @@
 import Router from "./router";
+import { ScoreProvider } from "../contexts/ScoreContext";
 
 function App() {
-  return <Router />;
+  return (
+    <ScoreProvider>
+      <Router />
+    </ScoreProvider>
+  );
 }
 
 export default App;

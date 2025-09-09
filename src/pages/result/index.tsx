@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import * as S from "./style";
-import { useLocation } from "react-router-dom";
 import {
   GedTaker,
   calcPreGradScore,
@@ -11,6 +10,7 @@ import {
 } from "../../lib/index";
 import { formatScore } from "../../utils/formatScore";
 import Body from "../../components/common/Body";
+import { useScore } from "../../contexts/ScoreContext";
 
 const ScorePage = () => {
   const [subjectScore, setSubjectScore] = useState(0);
@@ -23,17 +23,8 @@ const ScorePage = () => {
     location.href = "https://dgsw.dge.hs.kr/dgswh/main.do";
   };
 
-  // 페이지에서 전달된 상태를 가져오기
-  const { state } = useLocation();
-  const { freeSem, grades, attendance, volunteerTime, addPoint, studentType } =
-    state || {
-      freeSem: {},
-      grades: {},
-      attendance: {},
-      volunteerTime: {},
-      addPoint: {},
-      studentType: "",
-    };
+  // 전역 상태에서 데이터 가져오기
+  const { freeSem, grades, gedGrades, attendance, volunteerTime, addPoint, studentType } = useScore();
 
   //학생 타입에 따라 점수 계산
   useEffect(() => {
@@ -43,7 +34,7 @@ const ScorePage = () => {
     }
 
     if (studentType == "highSchoolEntranceExamTaker") {
-      const gedStuCalculatedScore = GedTaker({ scores: grades });
+      const gedStuCalculatedScore = GedTaker({ scores: gedGrades });
       setSubjectScore(gedStuCalculatedScore);
       return;
     } else if (studentType == "student") {
@@ -74,7 +65,7 @@ const ScorePage = () => {
     // 출결 점수 계산
     const attendanceScore = calcAttendanceScore(attendance);
     setAttendanceScore(attendanceScore);
-  }, [freeSem, grades, attendance, volunteerTime, addPoint, studentType]);
+  }, [freeSem, grades, gedGrades, attendance, volunteerTime, addPoint, studentType]);
 
   //총점 계산
   useEffect(() => {

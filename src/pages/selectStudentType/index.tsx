@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./style";
 import RadioBox from "../../components/selectStudentType";
 import Body from "../../components/common/Body";
+import { useScore } from "../../contexts/ScoreContext";
 
 const Select = () => {
   const [selectedValue, setSelectedValue] = useState<string>("");
   const navigate = useNavigate();
+  const { resetAllData } = useScore();
+
+  // 페이지 진입 시 모든 데이터 초기화
+  useEffect(() => {
+    resetAllData();
+  }, [resetAllData]);
 
   const handleRadioChange = (value: string) => {
     setSelectedValue(value);
@@ -18,11 +25,7 @@ const Select = () => {
       return;
     }
 
-    navigate(`/input/${selectedValue}`, {
-      state: {
-        studentType: selectedValue,
-      },
-    });
+    navigate(`/input/${selectedValue}`);
   };
 
   return (

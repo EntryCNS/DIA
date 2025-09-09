@@ -1,36 +1,28 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./style";
 import Body from "../../../components/common/Body";
+import { useScore } from "../../../contexts/ScoreContext";
 
 const ScorePage = () => {
   const navigate = useNavigate();
-  const [grades, setGrades] = useState({
-    korean: "0",
-    english: "0",
-    mathematics: "0",
-    socialStudies: "0",
-    science: "0",
-    electiveSubject: "0",
-  });
+  const { gedGrades, setGedGrades, setStudentType } = useScore();
 
   const handleChange = (subject: string, value: string) => {
     if (/^\d*$/.test(value)) {
-      setGrades((prev) => ({ ...prev, [subject]: value }));
+      setGedGrades((prev) => ({ ...prev, [subject]: value }));
     }
   };
 
   const handleNext = () => {
-    const allScoresEntered = Object.values(grades).every(score => score !== "0" && score !== "");
+    const allScoresEntered = Object.values(gedGrades).every(score => score !== "0" && score !== "");
     
     if (!allScoresEntered) {
       alert("점수를 모두 입력해주세요.");
       return;
     }
     
-    navigate("/result", {
-      state: { grades, studentType: "highSchoolEntranceExamTaker" },
-    });
+    setStudentType("highSchoolEntranceExamTaker");
+    navigate("/result");
   };
 
   return (
@@ -53,42 +45,42 @@ const ScorePage = () => {
             <td>
               <S.ScoreInput
                 type="number"
-                value={grades.korean}
+                value={gedGrades.korean}
                 onChange={(e) => handleChange("korean", e.target.value)}
               />
             </td>
             <td>
               <S.ScoreInput
                 type="number"
-                value={grades.english}
+                value={gedGrades.english}
                 onChange={(e) => handleChange("english", e.target.value)}
               />
             </td>
             <td>
               <S.ScoreInput
                 type="number"
-                value={grades.mathematics}
+                value={gedGrades.mathematics}
                 onChange={(e) => handleChange("mathematics", e.target.value)}
               />
             </td>
             <td>
               <S.ScoreInput
                 type="number"
-                value={grades.socialStudies}
+                value={gedGrades.socialStudies}
                 onChange={(e) => handleChange("socialStudies", e.target.value)}
               />
             </td>
             <td>
               <S.ScoreInput
                 type="number"
-                value={grades.science}
+                value={gedGrades.science}
                 onChange={(e) => handleChange("science", e.target.value)}
               />
             </td>
             <td>
               <S.ScoreInput
                 type="number"
-                value={grades.electiveSubject}
+                value={gedGrades.electiveSubject}
                 onChange={(e) => handleChange("electiveSubject", e.target.value)}
               />
             </td>
