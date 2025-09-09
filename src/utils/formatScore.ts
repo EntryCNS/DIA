@@ -1,3 +1,6 @@
 export const formatScore = (score: number) => {
-  return score % 1 === 0 ? score.toString() : score.toFixed(1);
+  if (score % 1 === 0) {
+    return score.toString();
+  }
+  return parseFloat(score.toFixed(2)).toString();
 };
