@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import * as S from "./style";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   GedTaker,
   calcPreGradScore,
@@ -13,6 +13,7 @@ import { formatScore } from "../../utils/formatScore";
 import Body from "../../components/common/Body";
 
 const ScorePage = () => {
+  const navigate = useNavigate();
   const [subjectScore, setSubjectScore] = useState(0);
   const [attendanceScore, setAttendanceScore] = useState(0); //출결점수
   const [volunteerScore, setVolunteerScore] = useState(0); //봉사점수
@@ -21,6 +22,17 @@ const ScorePage = () => {
 
   const handleNext = () => {
     location.href = "https://dgsw.dge.hs.kr/dgswh/main.do";
+  };
+
+  const handlePrev = () => {
+    const { studentType } = state || {};
+    if (studentType === "graduated") {
+      navigate("/input/graduated");
+    } else if (studentType === "student") {
+      navigate("/input/student");
+    } else {
+      navigate(-1);
+    }
   };
 
   // 페이지에서 전달된 상태를 가져오기
@@ -48,7 +60,6 @@ const ScorePage = () => {
       return;
     } else if (studentType == "student") {
       //졸업 예정자 성적 계산
-      console.log(grades);
       const normalCalculatedScore = calcPreGradScore(grades);
       setSubjectScore(
         typeof normalCalculatedScore === "number"
@@ -87,7 +98,7 @@ const ScorePage = () => {
   }, [subjectScore, attendanceScore, volunteerScore, bonusScore]);
 
   return (
-    <Body currentStep={3} text="점수를 확인해 주세요" handleNext={handleNext}>
+    <Body currentStep={3} text="점수를 확인해 주세요" handleNext={handleNext} handlePrev={handlePrev}>
       <S.Table>
         <thead>
           <tr>
