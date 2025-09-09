@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode, type Dispatch, type SetStateAction } from "react";
+import { createContext, useContext, useState, type ReactNode, type Dispatch, type SetStateAction } from "react";
 import {
   defaultGrades,
   type AddPointState,
@@ -79,7 +79,7 @@ const defaultGedGrades: GedGradesType = {
 
 const ScoreContext = createContext<ScoreContextType | undefined>(undefined);
 
-export const useScore = () => {
+const useScore = () => {
   const context = useContext(ScoreContext);
   if (context === undefined) {
     throw new Error("useScore must be used within a ScoreProvider");
@@ -87,7 +87,7 @@ export const useScore = () => {
   return context;
 };
 
-export const ScoreProvider = ({ children }: { children: ReactNode }) => {
+const ScoreProvider = ({ children }: { children: ReactNode }) => {
   const [freeSem, setFreeSem] = useState<FreeSemType>(defaultFreeSem);
   const [grades, setGrades] = useState<GradesType>(defaultGrades);
   const [gedGrades, setGedGrades] = useState<GedGradesType>(defaultGedGrades);
@@ -126,3 +126,5 @@ export const ScoreProvider = ({ children }: { children: ReactNode }) => {
 
   return <ScoreContext.Provider value={value}>{children}</ScoreContext.Provider>;
 };
+
+export { useScore, ScoreProvider };
