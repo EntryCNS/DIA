@@ -11,16 +11,37 @@ import { useFormContext } from "../../../contexts/FormContext";
 
 const StudentWritePage = () => {
   const navigate = useNavigate();
-  const { 
-    studentForm, 
-    setStudentFreeSem,
-    setStudentGrades,
-    setStudentAttendance,
-    setStudentVolunteerTime,
-    setStudentAddPoint
-  } = useFormContext();
-  
-  const { freeSem, grades, attendance, volunteerTime, addPoint } = studentForm;
+
+  const [freeSem, setFreeSem] = useState<FreeSemType>({
+    freeSem11: false,
+    freeSem12: false,
+    freeSem21: false,
+    freeSem22: false,
+    freeSem31: false,
+    freeSem32: false,
+  });
+  const [grades, setGrades] = useState<GradesType>(defaultGrades);
+  const [attendance, setAttendance] = useState<AttendanceState>({
+    grade1: { absence: "0", tardiness: "0", earlyDeparture: "0", partialAttendance: "0" },
+    grade2: { absence: "0", tardiness: "0", earlyDeparture: "0", partialAttendance: "0" },
+    grade3: { absence: "0", tardiness: "0", earlyDeparture: "0", partialAttendance: "0" },
+  });
+  const [volunteerTime, setVolunteerTime] = useState<VolunteerState>({
+    grade1: "0",
+    grade2: "0",
+    grade3: "0",
+  });
+  const [addPoint, setAddPoint] = useState<AddPointState>({
+    leaderShip: {
+      leader11: false,
+      leader12: false,
+      leader21: false,
+      leader22: false,
+      leader31: false,
+      leader32: false,
+    },
+    modelAward: "0",
+  });
 
   const handleNext = () => {
     navigate("/result", {

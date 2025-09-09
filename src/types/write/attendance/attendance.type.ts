@@ -1,8 +1,8 @@
 export interface AttendanceType {
   absence: string; // 결석
-  late: string; // 지각
-  earlyLeave: string; // 조퇴
-  tardy: string; // 결과
+  tardiness: string; // 지각
+  earlyDeparture: string; // 조퇴
+  partialAttendance: string; // 결과
 }
 
 export interface AttendanceState {
